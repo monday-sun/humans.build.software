@@ -15,7 +15,7 @@ _Weekly Notes are here to inspire others experimenting right now, give me a fram
 
 ## Highlights
 
-- Quilt made major strides this week: the modular actor system clicked, SQLite persistence landed, and the first full path through the cutting and swatching pipeline works.
+- Made a lot of progress on [Quilt](https://github.com/pandallel/quilt): the modular actor system clicked, SQLite persistence landed, and the first full path through the cutting and swatching pipeline works.
 - Started writing as a companion to the dev work — two blog posts published, the reflection is helpful
 - The Cursor workflow is starting to prove itself, even if it’s still rough around the edges.
 - LLM-based workflows are fast but cognitively dense — I’m moving quickly, but it feels like carrying a lot at once.
@@ -155,6 +155,7 @@ These rules make Cursor act like a junior dev or co-pilot with strong instincts 
 - First weekly notes!!
 - For non-cursor LLM chats if you're having markdown rendering problems:
   > “Please produce a Markdown document that is entirely wrapped in a single code block with outer backticks (using four backticks for the outer fence) so that inner formatting is preserved.”
+- Join me on [VibeColab Discord](https://discord.gg/TXhqgKkr) 
 
 ---
 
