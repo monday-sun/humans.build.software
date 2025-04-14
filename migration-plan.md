@@ -1,18 +1,66 @@
 # Implementation Plan: Jekyll to AstroWind Migration & Customization
 
+## Directory Structure Strategy
+
+*   **Jekyll Blog (`dev-blog/`):** Maintain this directory as-is. It contains all the existing Jekyll blog content that will be migrated.
+*   **Astro Site (`web/`):** Create the new Astro site in a dedicated subdirectory. This keeps things cleanly separated while allowing for the migration to proceed step-by-step.
+*   **Project Root:** Keep project-wide configurations and documentation here (like this migration plan).
+
 ## Milestone 1: Basic AstroWind Setup & Core Content Migration
 
 *   **Goal:** Get the essential Jekyll blog content working within a standard AstroWind project structure.
 *   **Implementation Time:** 1-2 days
 *   **Tasks:**
-    1.  Initialize a new Astro project using the AstroWind theme template (e.g., `npm create astro@latest -- --template onwidget/astrowind`). (0.5 days)
-        *   Install dependencies (`npm install`).
-    2.  Configure basic site settings in `src/config.yaml` (site name, URL, metadata defaults). (0.5 days)
-    3.  Migrate existing Markdown blog posts from Jekyll's `_posts` directory to Astro's `src/content/post/` directory. (0.5-1 day)
-        *   Review and adjust frontmatter fields as needed (e.g., Jekyll's `layout`, `tags`, `categories` vs. Astro's content collection schema if defined, or standard frontmatter). AstroWind uses frontmatter directly.
+    1.  Initialize a new Astro project with AstroWind in a dedicated `web/` directory: (0.5 days)
+        ```bash
+        # Create the web directory
+        mkdir -p web
+        
+        # Move into it and initialize AstroWind
+        cd web
+        npm create astro@latest . --template onwidget/astrowind --install --no-git
+        
+        # Remove unnecessary deployment configs we don't need
+        rm -f netlify.toml Dockerfile docker-compose.yml .dockerignore .stackblitzrc sandbox.config.json
+        
+        # Keep only the Vercel config since that's our deployment target
+        # (Make sure vercel.json exists or create it if needed)
+        ```
+        
+        **Note:** The `--no-git` flag is crucial since we're inside an existing Git repository.
+        
+    2.  Configure Vercel adapter for deployment: (0.25 days)
+        ```bash
+        cd web
+        npm install @astrojs/vercel
+        ```
+        Then update `astro.config.ts` to use the Vercel adapter:
+        ```typescript
+        import vercel from '@astrojs/vercel/static';
+        
+        // Within the defineConfig({ ... }) object:
+        adapter: vercel(),
+        ```
+        
+    3.  Configure basic site settings in `web/src/config.yaml`: (0.5 days)
+        *   Update site name, URL, metadata defaults
+        *   Configure Google Analytics and other settings as needed
+        *   Set up proper paths and URLs based on your deployment plan
+        
+    4.  Migrate existing Markdown blog posts from Jekyll's `dev-blog/_posts` directory to Astro's `web/src/content/post/` directory. (0.5-1 day)
+        *   Review and adjust frontmatter fields as needed (e.g., Jekyll's `layout`, `tags`, `categories` vs. Astro's content collection schema).
         *   Ensure date formats are compatible or convert them.
-    4.  Set up basic site navigation in `src/navigation.js` to reflect primary pages (Home, Blog). (0.5 days)
-    5.  Run `npm run dev` and verify that the site builds, the homepage loads, and blog posts are accessible and rendering correctly with the default AstroWind styling.
+        *   Example migration command (may need customization):
+        ```bash
+        # Create a migration script or manually copy and adjust files
+        mkdir -p web/src/content/post
+        # Then copy and transform files
+        ```
+        
+    5.  Set up basic site navigation in `web/src/navigation.js` to reflect primary pages (Home, Blog). (0.5 days)
+    
+    6.  Run `cd web && npm run dev` to verify that the site builds, the homepage loads, and blog posts are accessible and rendering correctly with the default AstroWind styling.
+    
 *   **Learning Outcome:** Understand AstroWind's project structure, configuration files (`config.yaml`, `navigation.js`), content collection setup (`src/content/`), and the basic Markdown/MDX rendering pipeline. Assess the complexity of raw content migration.
 
 ## Milestone 2: Foundational Styling (Colors & Fonts)
@@ -78,15 +126,52 @@
     5.  Add a link to the Lab page in the main navigation (`src/navigation.js`). (0.25 days)
 *   **Learning Outcome:** Practice creating new page routes, defining content structures (collections or data files), fetching/rendering data, and building feature-specific components. (Specific outcomes vary by chosen feature).
 
-## Milestone 7: Deployment & Final Review
+## Milestone 7: Vercel Deployment & Final Review
 
-*   **Goal:** Deploy the migrated and customized site to a hosting provider (Netlify/Vercel recommended by AstroWind) and perform final checks.
+*   **Goal:** Deploy the migrated and customized site to Vercel and perform final checks.
 *   **Implementation Time:** 0.5-1 day
 *   **Tasks:**
-    1.  Configure Astro for the target deployment platform (e.g., install adapter `@astrojs/netlify` or `@astrojs/vercel`).
-    2.  Run `npm run build` to generate the production site in `./dist/`.
-    3.  Test the production build locally using `npm run preview`.
-    4.  Set up deployment via Git integration on Netlify/Vercel.
-    5.  Deploy the `main` branch and verify the live site.
-    6.  Perform cross-browser/device testing and fix any final styling or functional issues.
-*   **Learning Outcome:** Understand Astro's build process, deployment adapters, and common hosting platform configurations. 
+    1.  Ensure the Vercel adapter is properly configured in `web/astro.config.ts`:
+        ```typescript
+        import { defineConfig } from 'astro/config';
+        import vercel from '@astrojs/vercel/static';
+        
+        export default defineConfig({
+          // Other configs...
+          output: 'static',
+          adapter: vercel({
+            // Optional: configure analytics, etc.
+          }),
+        });
+        ```
+    
+    2.  Run `cd web && npm run build` to generate the production site in `web/dist/`.
+    
+    3.  Test the production build locally using `cd web && npm run preview`.
+    
+    4.  Set up Vercel deployment:
+        * Create a `vercel.json` in the `web/` directory if not already present:
+        ```json
+        {
+          "buildCommand": "npm run build",
+          "devCommand": "npm run dev",
+          "installCommand": "npm install",
+          "outputDirectory": "dist",
+          "framework": "astro"
+        }
+        ```
+        
+    5.  Connect your GitHub repository to Vercel:
+        * Log in to your Vercel account
+        * Import your GitHub repository
+        * Configure the build settings to point to the `web` directory as the root directory
+        * Set the output directory to `dist`
+    
+    6.  Deploy and verify:
+        * Trigger the initial deployment
+        * Verify the live site functions correctly
+        * Set up your custom domain if needed
+    
+    7.  Perform cross-browser/device testing and fix any final styling or functional issues.
+    
+*   **Learning Outcome:** Understand Astro's build process with the Vercel adapter and how to configure Vercel for optimal deployment of an Astro site. 
