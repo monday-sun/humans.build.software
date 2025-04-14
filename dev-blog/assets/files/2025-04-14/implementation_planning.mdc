@@ -1,0 +1,117 @@
+---
+description: Creating implementation plans
+globs:
+alwaysApply: false
+---
+# Implementation Planning Framework for Quilt
+
+When implementing new features for Quilt, follow this structured approach:
+
+## Step 1: Understand the Domain Context
+- Identify the core domain concepts involved
+- Review the existing documentation in docs/src/features/
+- Ensure you understand how the feature fits within the actor model architecture
+
+## Step 2: Define the Component Structure
+- Determine which actors need to be modified or created
+- Identify the message types needed for communication
+- Define the state transitions in the Material Repository
+
+## Step 3: Plan the Implementation
+- Break down the implementation into small, focused tasks
+- Define clear interfaces between components
+- Consider error scenarios and edge cases
+
+## Step 4: Implement Incrementally
+- Start with core data structures and types
+- Implement the repository logic
+- Create the message handling logic
+- Connect the components via channels
+
+## Step 5: Test Thoroughly
+- Write unit tests for individual components
+- Create integration tests for component interactions
+- Test error scenarios and edge cases
+
+## Step 6: Document the Implementation
+- Update the docs/ directory with the new feature details
+- Add code documentation with clear examples
+- Update the memory-bank with implementation details
+
+## Priority Considerations
+1. Thread safety and concurrency
+2. Error handling and recovery
+3. Resource efficiency
+4. Code clarity and maintainability
+
+# Feature-First, Incremental Approach
+
+When planning new features or modules in Quilt, follow these guidelines to create effective, incremental implementation plans.
+
+## Core Principles
+
+1. **Start Small and Iterate** - Begin with the simplest working version and build on it
+2. **Focus on End-User Features** - Organize by user-visible capabilities, not technical layers
+3. **Learn as You Go** - Design each step to provide learnings that inform the next steps
+4. **Always Have Something Working** - Each milestone should produce testable functionality
+
+## Implementation Plan Structure
+
+### 1. Use Milestone-Based Structure
+
+```markdown
+## Milestone 1: [Short Feature Name]
+
+**Goal:** [One-sentence description of the user-visible feature]
+**Implementation Time:** [How long this milestone might take to implement]
+
+1. [First concrete step] (X-Y days)
+   - [Sub-step detail]
+   - [Sub-step detail]
+2. [Second step] (X-Y days)
+   - [Sub-step detail]
+   - [Sub-step detail]
+3. [Third step] (X-Y days)
+
+**Learning Outcome:** [What we expect to learn from this milestone]
+```
+
+### 2. Sequence Milestones Properly
+
+- Start with core functionality in minimal form
+- Add complexity gradually in subsequent milestones
+- Place optional features later in the sequence
+- End with integration and performance optimizations
+
+### 3. Include Time Estimates
+
+- Add overall time estimate for each milestone
+- Include time estimates for individual tasks within each milestone
+- Be realistic and account for unexpected challenges
+- Consider dependencies and potential blockers
+
+### 4. Include Learning Outcomes
+
+Every milestone should explicitly state what you expect to learn, such as:
+
+- Technical feasibility of an approach
+- Performance characteristics
+- User experience insights
+- Integration challenges
+
+## Anti-Patterns to Avoid
+
+❌ **Layer-Based Planning** - Avoid organizing by technical layers (data, logic, UI)  
+❌ **All-or-Nothing Milestones** - Avoid milestones that don't produce testable results  
+❌ **Front-Loading Complexity** - Avoid tackling the hardest problems first  
+❌ **Fixed Specifications** - Avoid overly detailed specifications that don't allow for learning
+
+## Process for Each Milestone
+
+1. **Prototype** - Get a basic version working quickly
+2. **Test** - Create examples with real data
+3. **Learn** - Evaluate what works and what doesn't
+4. **Refine** - Improve based on learnings
+5. **Document** - Update documentation with insights before moving on
+
+By following these guidelines, we'll create implementation plans that support learning, adaptation, and incremental value delivery.
