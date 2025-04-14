@@ -1,68 +1,52 @@
 # Monday’s Weekly Notes  
 _Week of [Month Day, Year]_
 
-> _(Optional short quote, reflection, or vibe-setting sentence)_
+---
+
+## Highlights
+
+- [Loose overview of what felt most important this week — major progress, shifts in direction, emotional tone, or new rituals.]
 
 ---
 
-## ✅ What Got Done Last Week
+## In-Progress / Work Notes
 
-- [ ] (Brief summary of what you did)
-- [ ] (Wins—technical, emotional, or even just showing up)
-- [ ] (Any small experiments that worked or failed)
-
----
-
-## 🧠 What’s on My Mind
-
-- (Questions, tensions, emotional check-in)
-- (What are you wrestling with?)
-- (Any patterns you’re noticing?)
+- [Ongoing work — technical, creative, collaborative, or otherwise.]
+- [Can be fragmented or summarized — use bullets, short paragraphs, etc.]
 
 ---
 
-## 🎯 This Week’s Focus
+## Thinking & Reflection
 
-1. (Primary focus or task for the week)
-2. (Secondary focus—can be process, emotional, or interpersonal)
-3. (Optional third intention or value to hold)
-
----
-
-## 🛠️ What I’m Working On
-
-### Quilt / Scaffold / [Other Projects]
-
-- (Current progress snapshot)
-- (Roadblocks or insights)
-- (Tiny next step you can see)
-
-### Meta-Work
-
-- (Are you working the way you want to?)
-- (Energy, pacing, habits—anything you want to tune?)
+- [Larger questions, philosophy threads, patterns emerging.]
+- [Anything that feels worth sitting with or returning to.]
 
 ---
 
-## 🪡 Threads to Pick Up Later
+## Cursor Rules (🪄 Optional but dedicated)
 
-- (Ideas to revisit)
-- (Features to scope later)
-- (Conversations or reflections worth circling back to)
-
----
-
-## 🌱 Little Joys / Side Notes
-
-- (Cats, yarn, tea, Switch games)
-- (Moments that grounded or delighted you)
+- [Current working review rules or rituals.]
+- [Notable catches, insights, or breakdowns.]
+- [New thoughts about how rules help or hinder.]
 
 ---
 
-## 🔮 Where I’m Heading
+## Links & Publishing
 
-> _(Optional forward-looking note or philosophical reflection)_
+- [Anything you shared, wrote, or read that felt meaningful.]
+- [New posts, favorite threads, code snippets, or inspirations.]
 
-- (What direction feels right—even if uncertain?)
-- (What do you want to remember about this week later?)
+---
+
+## Life & Grounding
+
+- [Moments that brought you joy, peace, or perspective.]
+- [Could be a single sentence, photo, or reflection.]
+
+---
+
+## Meta & Cadence
+
+- [How this weekly note felt to write.]
+- [Any changes to process or pace.]
 
