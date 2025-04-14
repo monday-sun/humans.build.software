@@ -1,0 +1,65 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# AI Context & Guidance: [Project Name/Type, e.g., Dev Blog]
+
+## 1. Core Principle: Use Human Documentation & Task Context File
+
+-   **Human Docs (`docs/`):** This project uses a central `docs/` directory (or equivalent) as the **single source of truth** for persistent information (goals, architecture, stack, processes, standards). Refer to it primarily for stable context.
+-   **Task Context (`current_task.md`):** The immediate focus for the current session is defined in the `current_task.md` file (located at [Specify Path, e.g., project root]).
+    -   **Purpose of `current_task.md`:** This file captures **transient, session-specific information**. It should contain:
+        -   The **specific, actionable goal** for the current work session.
+        -   Direct **links** to files, documentation sections, or issue tickets immediately relevant to *that goal*.
+        -   Brief **notes** on recent decisions, temporary blockers, or specific instructions pertinent *only* to the current task.
+    -   **Action:** **Read `current_task.md` at the start of each session and when asked to update context.** Do *not* treat it as a source for long-term project information; use `docs/` for that.
+
+## 2. Project Overview & Goals (Refer to `docs/`)
+
+-   **Main Goal:** Blog called Humans Build Software, meant to help people understand software development in a human-centric way.
+-   **Detailed Goals & Vision:** Refer to `docs/introduction/overview.md` and `docs/introduction/product_vision.md`.
+-   **Target Audience:** Defined in `docs/introduction/...`.
+-   **Tone & Style:** Defined in `docs/introduction/...` or `docs/technical/style_guide.md`.
+
+## 3. Locating Key Information (in `docs/`)
+
+-   **Architecture:** `docs/architecture/overview.md`, `docs/architecture/adr/`.
+-   **Technical Stack & Setup:** `docs/technical/stack.md`, `docs/technical/setup.md`. Also check root config files (`package.json`, framework configs, etc.).
+-   **Content:** Typically in `src/content/...`, `content/posts/`, `_posts/`. Verify location.
+-   **Code:** Typically in `src/layouts/`, `src/components/`, `_includes/`. Verify location.
+-   **Processes:** `CONTRIBUTING.md`, files within `docs/processes/`.
+
+## 4. AI Process Integration & Rules
+
+Follow these guidelines, using context from `current_task.md` and `docs/`:
+
+### Content Creation:
+-   Use clear Markdown. Add placeholders (`[TODO: Link]`).
+-   Generate outlines based on `current_task.md` goal.
+-   Provide research summaries/links.
+-   Adhere to project Tone & Style.
+-   Assist with proofreading.
+
+### Technical Tasks:
+-   **Configuration Changes:** Explain purpose/impact. Reference `docs/technical/stack.md`.
+-   **Code/Template Changes:** Follow framework syntax/conventions (`docs/technical/coding_standards.md`).
+-   **Content Structure:** Ensure frontmatter matches conventions.
+-   **Build Process:** Be aware of build steps (`package.json` scripts).
+-   **Code Snippets:** Format correctly with language identifiers.
+-   **Dependencies:** Explain rationale/integration (reference `docs/technical/stack.md`).
+
+### General Interaction:
+-   Confirm file locations before editing.
+-   Summarize intended actions.
+-   **Prioritize `docs/` and `current_task.md`.** Ask if unclear.
+
+## 5. Handling Context Updates (e.g., "update context" command)
+
+When asked to update context or review documentation:
+
+1.  **Re-read `current_task.md`:** Refresh understanding of the immediate goal, relevant files, and notes (as described in Section 1).
+2.  **Review Relevant `docs/` Sections:** Consult pertinent sections based on `current_task.md` and recent discussion.
+3.  **Identify Need for `current_task.md` Update:** Determine if the goal, links, or notes in `current_task.md` need refinement. **State clearly what changes are needed in `current_task.md`**.
+4.  **Identify Need for `docs/` Updates:** Determine if new information needs to be permanently captured in `docs/`. Clearly state *what* needs documenting and *where*.
+5.  **Await Confirmation:** Wait for user confirmation before proceeding.
