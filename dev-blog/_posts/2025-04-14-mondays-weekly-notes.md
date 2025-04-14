@@ -11,7 +11,7 @@ tags:
   - build-in-public
 last_modified_at: '2025-04-14T09:00'
 ---
-_Weekly Notes are to help inspirie others experimenting right now, provide a framework for me to reflect, and discuss these workflows with others._
+_Weekly Notes are here to inspire others experimenting right now, give me a framework for reflection, and open up discussion around these workflows._
 
 ## Highlights
 
@@ -42,8 +42,11 @@ _Weekly Notes are to help inspirie others experimenting right now, provide a fra
   - Plan → Act → Plan loop is effective at keeping the Cursor Agent from running away
   - Memory bank too rigid for evolving work, not team-friendly yet
   - Local review flow works but not yet integrated with GitHub
-
-- Considering GitHub MCP Server for bridging GitHub reviews with Cursor + LLM context
+    - Tried [`ai-code-review-action`](https://github.com/marketplace/actions/ai-code-review-action) for GitHub PR reviews
+      - It surfaced useful feedback, but added too many granular comments
+      - I had to manually re-feed its notes into Cursor, which broke the flow
+      - Still looking for a smoother way to bridge GitHub and Cursor-based reviews
+    - Considering GitHub MCP Server for bridging GitHub reviews with Cursor + LLM context
 
 ---
 
@@ -58,7 +61,7 @@ _Weekly Notes are to help inspirie others experimenting right now, provide a fra
 
 ## Cursor Rules
 
-These are my current Cursor rules. I can feed it commands to facilitate a largely automated workflow: `what's next`, `do you have any questions`, `act`, `test`, `code review`, then `update memory bank`, and it follows these rules to respond with consistent structure and behavior. As long at I have a clear implementation plan in place, this works farily smoothly. If it fails, then we update the implementation plan with more detail / learnings from the attempt.
+These are my current Cursor rules. I can feed it commands to facilitate a largely automated workflow: `what's next`, `do you have any questions`, `act`, `test`, `code review`, then `update memory bank`, and it follows these rules to respond with consistent structure and behavior. As long at I have a clear implementation plan in place, this works fairly smoothly. If it fails, then we update the implementation plan with more detail / learnings from the attempt.
 
 - 📄 [`implementation_planning.mdc`](/assets/files/2025-04-14/implementation_planning.mdc)  
   This powers commands like `plan this feature` or `what's next`. It guides Cursor to produce milestone-driven, end-user-focused implementation plans with learning goals and time estimates.  
@@ -68,7 +71,7 @@ These are my current Cursor rules. I can feed it commands to facilitate a largel
 
 - 📄 [`modes_of_operation.mdc`](/assets/files/2025-04-14/modes_of_operation.mdc)  
   This governs the Cursor event loop. It starts in PLAN mode and doesn’t switch to ACT until I explicitly tell it to `ACT`. Every response starts with `# Mode: PLAN` or `# Mode: ACT` so I know what state it's in.
-  **Pros:** Helps prevent the LLM from just going. Claude in Cursor is very eager to please with completed work. Helps the LLM frame the work before executing. Gemini is much better at planning and following the memory bank rules. Claude is better at acting because it's fine tuned to the tools.
+  **Pros:** Helps prevent the LLM from just going. Claude in Cursor is very eager to please with completed work. Helps the LLM frame the work before executing. Gemini is much better at planning and following the memory bank rules. Claude is better at acting because it's fine-tuned to the tools.
   **Cons:** Claude is not very good at sticking to these rules anyway, and it's less fluid and 'natural' feeling.
   **Source:** [reddit post](https://www.reddit.com/r/cursor/comments/1jqvqjx/thanks_to_the_memory_system_post_productivity/)
 
@@ -162,5 +165,7 @@ Curious how others are shaping their LLM workflows. Are you trying something sim
 This week I’m especially thinking about:
 - How to make memory banks more team-friendly
 - Integrating LLM review flows with GitHub
+- Finding a better bridge between GitHub and Cursor-based reviews  
+  - I tried [`ai-code-review-action`](https://github.com/marketplace/actions/ai-code-review-action), but it overwhelmed me with low-priority comments that I had to manually feed back into Cursor. It broke the rhythm more than it helped.
 
 If you’re experimenting in this space, I’d love to hear what’s working (or not).
