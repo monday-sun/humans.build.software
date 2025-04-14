@@ -44,9 +44,16 @@ _Week of [Month Day, Year]_
 - [Could be a single sentence, photo, or reflection.]
 
 ---
+## 🐈 Cat Pic of the Week
+
+---
 
 ## Meta & Cadence
 
 - [How this weekly note felt to write.]
 - [Any changes to process or pace.]
 
+---
+
+## 💬 Open Threads
+- [Approprate engagement pulls]
