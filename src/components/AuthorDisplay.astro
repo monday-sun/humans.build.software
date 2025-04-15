@@ -23,12 +23,12 @@ const { author, content: Content } = Astro.props
       )
     }
     <div>
-      <h1 class="mb-2">{author.name}</h1>
+      <h2 class="mb-2">{author.name}</h2>
       {author.pronouns && <p class="text-xl text-neutral-700 dark:text-neutral-300">({author.pronouns})</p>}
     </div>
   </div>
 
-  <div class="author-bio prose dark:prose-invert mb-12 max-w-3xl">
+  <div class="prose dark:prose-invert mb-12 max-w-3xl">
     <Content />
   </div>
 
@@ -67,46 +67,7 @@ const { author, content: Content } = Astro.props
     // Styles moved from [author].astro
   }
 
-  .prose {
-    @apply text-lg leading-relaxed;
-
-    :global(h1) {
-      @apply text-3xl font-bold mb-2; /* Example adjustment if needed */ /* Adjusted for component context */
-    }
-
-    :global(h2) {
-      @apply text-2xl font-bold mt-8 mb-4;
-    }
-
-    :global(h3) {
-      @apply text-xl font-bold mt-6 mb-3;
-    }
-
-    :global(p) {
-      @apply mb-4;
-    }
-
-    :global(ul, ol) {
-      @apply mb-4 pl-6;
-    }
-
-    :global(li) {
-      @apply mb-1;
-    }
-
-    :global(blockquote) {
-      @apply border-l-4 border-neutral-300 dark:border-neutral-700 pl-4 italic;
-    }
-
-    :global(a) {
-      color: var(--action-color);
-      text-decoration: underline;
-
-      &:hover,
-      &:focus {
-        color: var(--action-color-state);
-        text-decoration: none;
-      }
-    }
+  .prose :global(p) {
+    @apply mb-4; /* Restore paragraph bottom margin within prose */
   }
 </style>
