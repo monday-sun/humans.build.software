@@ -5,7 +5,7 @@
 export const siteConfig = {
   name: 'Humans Build Software',
   description:
-    'A development practices blog centered around people, the mistakes we make, and how to avoid or recover from them.',
+    'A messy, honest look at modern development—where AI might automate the tasks, but humans still carry the meaning, the mistakes, and the mission.',
   url: 'https://humans.build.software',
   author: 'Monday Romelfanger',
   defaultImage: 'social-preview-image.png',
