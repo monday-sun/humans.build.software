@@ -1,0 +1,112 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { Image } from 'astro:assets'
+import StyledLinkButton from './StyledLinkButton.astro'
+
+// Define the type alias
+type AuthorData = CollectionEntry<'authors'>['data']
+
+interface Props {
+  // Use the alias here
+  author: AuthorData
+  content: any // The rendered Content from the author's markdown
+}
+
+const { author, content: Content } = Astro.props
+---
+
+<div class="author-details">
+  <div class="author-header mb-8 flex items-center gap-6">
+    {
+      author.avatar && (
+        <Image src={author.avatar} alt={`${author.name}'s avatar`} width={120} height={120} class="rounded-full" />
+      )
+    }
+    <div>
+      <h1 class="mb-2">{author.name}</h1>
+      {author.pronouns && <p class="text-xl text-neutral-700 dark:text-neutral-300">({author.pronouns})</p>}
+    </div>
+  </div>
+
+  <div class="author-bio prose dark:prose-invert mb-12 max-w-3xl">
+    <Content />
+  </div>
+
+  {
+    author.social && (
+      <div class="connect mb-12">
+        <h2 class="mb-4 text-xl">Connect with {author.name.split(' ')[0]}</h2>
+        <div class="social-links flex flex-wrap gap-3">
+          {Object.entries(author.social).map(([key, social]) => (
+            <StyledLinkButton href={social.url} label={social.label} iconName={social.icon} title={social.label} />
+          ))}
+        </div>
+      </div>
+    )
+  }
+</div>
+
+<style lang="scss">
+  .author-header {
+    // Styles moved from [author].astro
+  }
+
+  .author-bio {
+    // Styles moved from [author].astro
+  }
+
+  .author-bio :global(p) {
+    margin-bottom: 1rem;
+  }
+
+  .connect {
+    // Styles moved from [author].astro
+  }
+
+  .social-links {
+    // Styles moved from [author].astro
+  }
+
+  .prose {
+    @apply text-lg leading-relaxed;
+
+    :global(h1) {
+      @apply text-3xl font-bold mb-2; /* Example adjustment if needed */ /* Adjusted for component context */
+    }
+
+    :global(h2) {
+      @apply text-2xl font-bold mt-8 mb-4;
+    }
+
+    :global(h3) {
+      @apply text-xl font-bold mt-6 mb-3;
+    }
+
+    :global(p) {
+      @apply mb-4;
+    }
+
+    :global(ul, ol) {
+      @apply mb-4 pl-6;
+    }
+
+    :global(li) {
+      @apply mb-1;
+    }
+
+    :global(blockquote) {
+      @apply border-l-4 border-neutral-300 dark:border-neutral-700 pl-4 italic;
+    }
+
+    :global(a) {
+      color: var(--action-color);
+      text-decoration: underline;
+
+      &:hover,
+      &:focus {
+        color: var(--action-color-state);
+        text-decoration: none;
+      }
+    }
+  }
+</style>
