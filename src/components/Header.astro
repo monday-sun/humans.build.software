@@ -3,6 +3,7 @@ import Navigation from '../components/Navigation.astro'
 import { SkipLink } from 'accessible-astro-components'
 import { Icon } from 'astro-icon/components'
 import { authorData } from '../data/author.js'
+import StyledLinkButton from './StyledLinkButton.astro'
 ---
 
 <header>
@@ -21,10 +22,12 @@ import { authorData } from '../data/author.js'
       <a href="/portfolio/">Portfolio</a>
     </li>
     <li class="menu-item">
-      <a href={authorData.social.coffee.url} class="coffee-link" title={authorData.social.coffee.label}>
-        <Icon name={authorData.social.coffee.icon} />
-        <span>{authorData.social.coffee.label}</span>
-      </a>
+      <StyledLinkButton
+        href={authorData.social.coffee.url}
+        label={authorData.social.coffee.label}
+        iconName={authorData.social.coffee.icon}
+        title={authorData.social.coffee.label}
+      />
     </li>
   </Navigation>
 </header>
@@ -53,35 +56,9 @@ import { authorData } from '../data/author.js'
       }
     }
 
-    .coffee-link {
+    .menu-item {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      transition: all 0.2s ease;
-      border: 2px solid var(--action-color);
-      border-radius: 2rem;
-      background-color: var(--background);
-      padding: 0.5rem 1rem;
-      color: var(--action-color);
-      text-decoration: none;
-
-      [data-icon] {
-        width: 1.2rem;
-        height: 1.2rem;
-
-        path {
-          fill: var(--action-color);
-        }
-      }
-
-      &:hover {
-        background-color: var(--action-color);
-        color: var(--background);
-
-        [data-icon] path {
-          fill: var(--background);
-        }
-      }
     }
   }
 </style>
