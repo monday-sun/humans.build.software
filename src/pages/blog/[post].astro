@@ -1,57 +1,129 @@
 ---
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
 import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
+import { getCollection, render } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
 
 export async function getStaticPaths() {
-  const data = await fetch('https://jsonplaceholder.typicode.com/posts').then((response) => response.json())
+  const blogEntries = await getCollection('blog')
 
-  return data.map((post) => {
+  console.log(
+    'Available blog entries:',
+    blogEntries.map((entry) => ({
+      id: entry.id,
+      title: entry.data.title,
+    })),
+  )
+
+  return blogEntries.map((entry) => {
+    console.log(`Generating path for ${entry.id}`)
     return {
-      params: { post: post.title.replaceAll(' ', '-').toLowerCase() },
-      props: { post },
+      params: { post: entry.id },
+      props: { entry },
     }
   })
 }
 
-const { post } = Astro.props
+interface Props {
+  entry: CollectionEntry<'blog'>
+}
+
+const { entry } = Astro.props
+const { Content } = await render(entry)
+const { title, author, pubDate, updatedDate, tags } = entry.data
+const formattedPubDate = new Date(pubDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+})
+const formattedUpdatedDate = updatedDate
+  ? new Date(updatedDate).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  : null
 ---
 
-<DefaultLayout title={post.title} description={post.body} url={post.title}>
+<DefaultLayout title={title} description={entry.data.description} url={`/blog/${entry.id}`}>
   <div class="container">
     <div class="mt-12">
       <Breadcrumbs>
         <BreadcrumbsItem href="/" label="Home" />
         <BreadcrumbsItem href="/blog" label="Blog" />
-        <BreadcrumbsItem currentPage={true} label={post.title} />
+        <BreadcrumbsItem currentPage={true} label={title} />
       </Breadcrumbs>
     </div>
   </div>
   <section class="my-12">
     <div class="container">
-      <h1>{post.title}</h1><br />
-      <p>By userId: {post.userId}</p>
+      <h1>{title}</h1>
+      <div class="mt-2 flex flex-wrap gap-2">
+        {
+          tags &&
+            tags.map((tag) => (
+              <span class="rounded-md bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">{tag}</span>
+            ))
+        }
+      </div>
+      <div class="mt-4 text-neutral-700 dark:text-neutral-300">
+        <p>By {author || 'Anonymous'} • Published {formattedPubDate}</p>
+        {formattedUpdatedDate && <p>Last updated: {formattedUpdatedDate}</p>}
+      </div>
     </div>
   </section>
   <section class="my-12">
-    <div class="container">
-      <p class="text-2xl">{post.body}</p>
+    <div class="prose dark:prose-invert container max-w-3xl">
+      <Content />
     </div>
   </section>
 </DefaultLayout>
 
 <style lang="scss">
-  ul {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 4rem;
+  .prose {
+    @apply text-lg leading-relaxed;
 
-    @media (min-width: 550px) {
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 2rem;
+    :global(h2) {
+      @apply text-2xl font-bold mt-8 mb-4;
     }
 
-    @media (min-width: 950px) {
-      grid-template-columns: repeat(3, 1fr);
+    :global(h3) {
+      @apply text-xl font-bold mt-6 mb-3;
+    }
+
+    :global(p) {
+      @apply mb-4;
+    }
+
+    :global(ul, ol) {
+      @apply mb-4 pl-6;
+    }
+
+    :global(li) {
+      @apply mb-1;
+    }
+
+    :global(blockquote) {
+      @apply border-l-4 border-neutral-300 dark:border-neutral-700 pl-4 italic;
+    }
+
+    :global(a) {
+      color: var(--action-color);
+      text-decoration: underline;
+
+      &:hover,
+      &:focus {
+        color: var(--action-color-state);
+        text-decoration: none;
+      }
+    }
+
+    :global(pre) {
+      @apply p-4 rounded-lg overflow-x-auto;
+    }
+
+    :global(img) {
+      @apply max-w-full rounded-lg my-6;
     }
   }
 </style>
