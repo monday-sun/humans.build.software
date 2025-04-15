@@ -72,73 +72,62 @@
       - ✅ Created documentation at `docs/technical/site_configuration.md`
       - ✅ Updated the homepage to use the site name from the configuration
 
-  5.  Define Blog Content Collection and Migrate Posts: (1-1.5 days)
+  5.  ✅ Define Blog Content Collection and Migrate Posts: (1-1.5 days)
 
-      - **Update Content Configuration (`src/content.config.mjs`):**
+      - ✅ **Update Content Configuration (`src/content.config.mjs`):**
 
-        - Import `defineCollection` and `z` from `astro:content`.
-        - Define a new `blog` collection using `defineCollection`.
-        - Set the `loader` to point to `./src/content/blog/`.
-        - Define the schema using `z.object({})` with the following fields:
+        - ✅ Imported `defineCollection` and `z` from `astro:content`.
+        - ✅ Defined a new `blog` collection using `defineCollection`.
+        - ✅ Set the `loader` to point to `./src/content/blog/`.
+        - ✅ Defined the schema using `z.object({})` with the following fields:
           - `title: z.string()`
           - `description: z.string()`
           - `author: z.string().optional()`
-          - `pubDate: z.date()` (Will be derived from filename during migration)
-          - `updatedDate: z.date().optional()` (Will be mapped from old `last_modified_at` field)
-          - `tags: z.array(z.string()).optional()` (Will combine old `categories` and `tags`)
+          - `pubDate: z.string().transform()` (With date transformation for flexible parsing)
+          - `updatedDate: z.string().transform().optional()` (With transformation for flexible parsing)
+          - `tags: z.array(z.string()).optional()` (Combined old `categories` and `tags`)
           - `image: z.object({ src: z.string(), alt: z.string() }).optional()`
-          - `draft: z.boolean().optional()`
-        - Add the `blog` collection to the `export const collections = { ... }` object.
+          - `draft: z.boolean().optional().default(false)`
+        - ✅ Added the `blog` collection to the `export const collections = { ... }` object.
 
-      - **Create Content Directory:**
+      - ✅ **Content Directory:**
 
-        ```bash
-        mkdir -p src/content/blog
-        ```
+        - ✅ Created content directory at `src/content/blog/`
 
-      - **Copy Posts:**
+      - ✅ **Copy Posts:**
 
-        ```bash
-        # From project root
-        cp -r dev-blog/_posts/* src/content/blog/
-        ```
+        - ✅ Copied posts from `dev-blog/_posts/` to `src/content/blog/`
 
-      - **Adapt Frontmatter:**
+      - ✅ **Adapt Frontmatter:**
 
-        - Manually edit each Markdown file in `src/content/blog/` or create a script to:
-          - Remove the old Jekyll frontmatter delimiters (`---`).
-          - Add Astro/MDX frontmatter delimiters (`---`).
-          - Map old fields to the new schema:
-            - Extract date from filename (e.g., `YYYY-MM-DD`) and set as `pubDate`.
-            - Map `last_modified_at` to `updatedDate`.
-            - Combine `categories` and `tags` into the `tags` array.
-            - Ensure `title`, `description`, and `author` are present and correctly formatted.
-            - Add optional fields like `image` or `draft` as needed.
-          - Ensure date fields (`pubDate`, `updatedDate`) are in a format Astro/Zod can parse (e.g., `YYYY-MM-DD` or ISO 8601 string).
+        - ✅ Updated frontmatter in blog posts to match the Astro schema
+        - ✅ Added proper date formatting in ISO 8601 format for `pubDate` and `updatedDate` fields
+        - ✅ Ensured all required fields were present and correctly formatted
 
-      - **Known Challenges:**
-        - **Date Handling:** Astro's content collections require careful handling of date fields in the schema. The `z.date()` validator is strict and may need transformation functions to handle string date formats.
-        - **Content Rendering:** Content collections require specific patterns for properly rendering markdown content. The rendering approach differs between using dynamic routes and static site generation.
-        - **Filename/Path Handling:** Be careful with filenames during migration - changes in filenames can lead to routing/URL issues in the final site.
-        - **Debug Steps:** When troubleshooting content collection issues, inspect the raw collection entries to understand their structure and available methods.
-        - **MDX Alternative:** Consider installing the MDX integration (`@astrojs/mdx`) early in the process, which may provide more flexibility for content rendering and component usage within markdown. This approach might be necessary for the "zine-style" features planned in Milestone 4.
-          ```bash
-          npm install @astrojs/mdx
-          ```
-          Then add it to `astro.config.mjs` integrations. This would allow using components directly in markdown files.
+      - ✅ **Blog Rendering:**
 
-  6.  Set up basic site navigation in the theme's navigation configuration file (verify location, possibly `src/data/navigation.js` or similar). (0.5 days)
+        - ✅ Updated blog index page to display posts from content collection
+        - ✅ Created dynamic routes for individual blog posts
+        - ✅ Implemented styling for blog posts using CSS custom properties
+        - ✅ Used entry IDs instead of slugs for routing to ensure consistent URLs
 
-  7.  Run `npm run dev` to verify that the site builds, the homepage loads, and blog posts are accessible and rendering correctly with the theme's styling and merged configurations.
+      - **Implementation Notes:**
+        - Used content IDs for routing rather than slugs to avoid path resolution issues
+        - Added string transformation for date fields to handle various date formats
+        - Applied CSS custom properties for styling instead of Tailwind's built-in utility classes for links
+        - Ensured proper rendering of markdown content with appropriate typography styles
 
-  8.  **Troubleshooting Blog Post Rendering (if needed):**
-      - **Common Issues:**
-        - **File Structure:** Ensure the content collection file structure exactly matches what's configured in `content.config.mjs`
-        - **Schema Validation:** Use console logs to identify schema validation errors (especially with dates)
-        - **Rendering Methods:** Debug the rendering pipeline by first displaying raw content before attempting to render markdown
-        - **Dynamic Routes:** When using `[post].astro` routes, ensure the params from getStaticPaths match exactly with content collection IDs
-        - **Content Collections:** Understand that Astro's content collection API may change between versions - refer to the current documentation
-        - **Fallback Approach:** If markdown rendering is problematic, consider using a simple HTML rendering of post.body as a temporary solution
+  6.  ✅ Set up basic site navigation in the theme's navigation configuration file (verify location, possibly `src/data/navigation.js` or similar). (0.5 days)
+
+  7.  ✅ Run `npm run dev` to verify that the site builds, the homepage loads, and blog posts are accessible and rendering correctly with the theme's styling and merged configurations.
+
+  8.  ✅ **Troubleshooting Blog Post Rendering:**
+      - ✅ **File Structure:** Ensured content collection file structure matched the configuration
+      - ✅ **Schema Validation:** Used string transformation for dates to prevent validation errors
+      - ✅ **Rendering Methods:** Successfully rendered content with the Content component
+      - ✅ **Dynamic Routes:** Used entry.id for route parameters instead of slugs for more reliable routing
+      - ✅ **Content Collections:** Applied best practices for accessing collection data
+      - ✅ **Styling:** Created proper prose styling for blog content
 
 - **Learning Outcome:** Understand the `accessible-astro-starter` theme's structure, configuration files, content setup, and basic rendering. Practice merging project-wide configurations. Assess raw content migration needs for this theme.
 
