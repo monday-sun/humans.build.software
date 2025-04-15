@@ -4,13 +4,14 @@ import '../assets/scss/globals.scss'
 import SiteMeta from '../components/SiteMeta.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+import { siteConfig } from '../data/site.js'
 
 const {
-  title = 'Astro',
-  description = 'A starter project with accessibility features using Astro static site builder. Contains accessible landmarks, skip links, a dark mode color scheme, better focus outline and keyboard menu navigation.',
-  url = Astro.site,
-  image = 'social-preview-image.png',
-  author = 'Mark Teekman',
+  title = siteConfig.name,
+  description = siteConfig.description,
+  url = Astro.site || siteConfig.url,
+  image = siteConfig.defaultImage,
+  author = siteConfig.author,
 } = Astro.props
 ---
 
@@ -68,9 +69,9 @@ const {
       body {
         display: flex;
         flex-direction: column;
-        color: var(--font-color);
         background-color: var(--background);
         overflow-x: hidden;
+        color: var(--font-color);
 
         main {
           flex: 1 0 auto;
@@ -82,9 +83,9 @@ const {
       }
 
       pre {
-        padding: 1rem;
-        border-radius: 0.35rem;
         border: 2px solid var(--action-color);
+        border-radius: 0.35rem;
+        padding: 1rem;
       }
 
       body .pagination a {
@@ -100,14 +101,14 @@ const {
 
       .sr-only {
         position: absolute;
+        margin: -1px;
+        padding: 0;
         width: 1px;
         height: 1px;
-        padding: 0;
-        margin: -1px;
         overflow: hidden;
         clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
         border-width: 0;
+        white-space: nowrap;
       }
     </style>
   </body>
