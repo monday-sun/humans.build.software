@@ -1,16 +1,16 @@
 ---
-title: "Transcript: Vibe Coding a Crystal Ball"
-description: "Making something silly and writing about it"
-author: "Monday Romelfanger"
-pubDate: "2025-04-05T00:00:00Z"
-updatedDate: "2025-04-08T23:45:00.000Z"
+title: 'Transcript: Vibe Coding a Crystal Ball'
+description: 'Making something silly and writing about it'
+author: 'monday-romelfanger'
+pubDate: '2025-04-05T00:00:00Z'
+updatedDate: '2025-04-08T23:45:00.000Z'
 tags:
-  - "projects"
-  - "llms"
-  - "development-process"
-  - "cursor"
-  - "just-for-fun"
-  - "build-in-public"
+  - 'projects'
+  - 'llms'
+  - 'development-process'
+  - 'cursor'
+  - 'just-for-fun'
+  - 'build-in-public'
 draft: false
 ---
 

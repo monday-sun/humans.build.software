@@ -1,0 +1,129 @@
+---
+import DefaultLayout from '../../layouts/DefaultLayout.astro'
+import { Card } from 'accessible-astro-components'
+import { getCollection } from 'astro:content'
+import { Image } from 'astro:assets'
+
+const authors = await getCollection('authors')
+---
+
+<DefaultLayout title="Authors" description="Meet the authors of Humans Build Software">
+  <section class="my-12">
+    <div class="space-content container">
+      <h1>Authors</h1>
+      <p class="text-2xl">Meet the people behind Humans Build Software</p>
+    </div>
+  </section>
+
+  <section class="my-12">
+    <div class="container">
+      <ul class="authors-grid">
+        {
+          authors.map((author) => (
+            <li>
+              <a href={`/authors/${author.id}`} class="author-card">
+                <div class="author-card-inner">
+                  <div class="author-avatar">
+                    {author.data.avatar ? (
+                      <Image
+                        src={author.data.avatar}
+                        alt={`${author.data.name}'s avatar`}
+                        width={80}
+                        height={80}
+                        class="rounded-full"
+                      />
+                    ) : (
+                      <div class="avatar-placeholder" />
+                    )}
+                  </div>
+                  <div class="author-info">
+                    <h2 class="author-name">{author.data.name}</h2>
+                    {author.data.pronouns && <p class="author-pronouns">({author.data.pronouns})</p>}
+                  </div>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</DefaultLayout>
+
+<style lang="scss">
+  .authors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .author-card {
+    display: block;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+    background: var(--neutral-100);
+    height: 100%;
+    overflow: hidden;
+
+    &:hover,
+    &:focus {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background: var(--action-color-light);
+      text-decoration: none;
+    }
+
+    .dark & {
+      background: var(--neutral-800);
+
+      &:hover,
+      &:focus {
+        background: var(--neutral-700);
+      }
+    }
+  }
+
+  .author-card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .author-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .avatar-placeholder {
+    border-radius: 50%;
+    background: var(--neutral-300);
+    width: 80px;
+    height: 80px;
+
+    .dark & {
+      background: var(--neutral-600);
+    }
+  }
+
+  .author-name {
+    margin: 0;
+    color: var(--heading-color);
+    font-size: 1.25rem;
+  }
+
+  .author-pronouns {
+    margin: 0.25rem 0 0;
+    color: var(--neutral-700);
+    font-size: 0.9rem;
+
+    .dark & {
+      color: var(--neutral-300);
+    }
+  }
+</style>

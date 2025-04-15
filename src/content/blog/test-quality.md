@@ -1,15 +1,15 @@
 ---
-title: "Write Tests for Code Quality (and use AI to do it)"
-description: "The only real quality is automated quality"
-author: "Monday Romelfanger"
-pubDate: "2024-05-04T00:00:00Z"
-updatedDate: "2024-05-04T22:46:49.000Z"
+title: 'Write Tests for Code Quality (and use AI to do it)'
+description: 'The only real quality is automated quality'
+author: 'monday-romelfanger'
+pubDate: '2024-05-04T00:00:00Z'
+updatedDate: '2024-05-04T22:46:49.000Z'
 tags:
-  - "quality"
-  - "quality"
-  - "development-process"
-  - "quality-automation"
-  - "testing"
+  - 'quality'
+  - 'quality'
+  - 'development-process'
+  - 'quality-automation'
+  - 'testing'
 draft: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Release Flags"
 description: "More freedom and fast recovery"
-author: "Monday Romelfanger"
+author: "monday-romelfanger"
 pubDate: "2024-04-20T00:00:00Z"
 updatedDate: "2024-04-21T01:15:22.000Z"
 tags:

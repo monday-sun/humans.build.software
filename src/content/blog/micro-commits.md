@@ -1,15 +1,16 @@
 ---
-title: "Micro-Commits"
-description: "Commit and forget"
-author: "Monday Romelfanger"
-pubDate: "2024-04-13T00:00:00Z"
-updatedDate: "2024-04-21T01:15:22.000Z"
+title: 'Micro-Commits'
+description: 'Commit and forget'
+author: 'monday-romelfanger'
+pubDate: '2024-04-13T00:00:00Z'
+updatedDate: '2024-04-21T01:15:22.000Z'
 tags:
-  - "micro-commits"
-  - "development-process"
-  - "micro-commits"
+  - 'micro-commits'
+  - 'development-process'
+  - 'micro-commits'
 draft: false
 ---
+
 As software engineers, we expect too much from our brains. We expect to hold onto enough context to make new features without breaking existing ones and rarely with enough test coverage to ensure we didn't break something. Our brains don't have as much [working capacity](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two) as we'd like to believe.
 
 ## Pre-requisites
@@ -45,7 +46,7 @@ Follow your ideas, and keep writing down one thing at a time. Each commit is one
 
 - Does the build and tests pass? If not, fix any issues or reset to the last working change.
 - Use `git diff main` or push your branch to its remote host (Github, GitLab, etc.) and review the changes.
-Is it explainable? If so, move to step 6. If not, you can either reset to the last explainable set or create a new branch and start over at step 1.
+  Is it explainable? If so, move to step 6. If not, you can either reset to the last explainable set or create a new branch and start over at step 1.
 - You want a change that someone can review in < 5 minutes while still providing forward movement on any work item, no matter the complexity of the code.
 
 ### 6. Do your standard code review or merge process
@@ -58,15 +59,15 @@ Because you're committing frequently, it's best to have a set of prefixes you de
 
 These are the prefixes I use, but I often see others mix up MANUAL, RISKY, and FEATURE. Find a set that makes sense for you.
 
-| Prefix   | Meaning                                                                                                                                                                          | Example                                            |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| COMMENT: | I only changed comment/white space                                                                                                                                               | COMMENT: updated comment on MyClass                |
-| TEST:    | I only changed or added a test                                                                                                                                                   | TEST: added missing test for MyClass               |
+| Prefix   | Meaning                                                                                                                                                                      | Example                                            |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| COMMENT: | I only changed comment/white space                                                                                                                                           | COMMENT: updated comment on MyClass                |
+| TEST:    | I only changed or added a test                                                                                                                                               | TEST: added missing test for MyClass               |
 | TOOL:    | I used a tool to do this task, including renames<br/>and file moves done with IDE tools, especially if a compiler will<br/>validate it. If appropriate, include the command. | TOOL: nx g library my-new-lib                      |
-| MANUAL:  | I followed a [safe refactoring technique](https://refactoring.guru/refactoring/catalog) to make this change.                                                                     | MANUAL: moved someMethod to new class              |
-| RISKY:   | I did not follow a safe refactoring technique,<br/>but I believe this should have no behavior change                                                                             | RISKY: moved registration from ModuleA to Module B |
-| OOPS:    | I made a mistake previously that I need to fix                                                                                                                                   | OOPS: fix incorrect import                         |
-| FEATURE: | I changed the behavior to do something new                                                                                                                                       | FEATURE: implemented someNewBahavior               |
+| MANUAL:  | I followed a [safe refactoring technique](https://refactoring.guru/refactoring/catalog) to make this change.                                                                 | MANUAL: moved someMethod to new class              |
+| RISKY:   | I did not follow a safe refactoring technique,<br/>but I believe this should have no behavior change                                                                         | RISKY: moved registration from ModuleA to Module B |
+| OOPS:    | I made a mistake previously that I need to fix                                                                                                                               | OOPS: fix incorrect import                         |
+| FEATURE: | I changed the behavior to do something new                                                                                                                                   | FEATURE: implemented someNewBahavior               |
 
 ## FAQ
 

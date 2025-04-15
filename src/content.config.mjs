@@ -14,12 +14,31 @@ const projects = defineCollection({
   }),
 })
 
+const authors = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/authors' }),
+  schema: z.object({
+    name: z.string(),
+    pronouns: z.string().optional(),
+    avatar: z.string().optional(),
+    email: z.string().optional(),
+    social: z
+      .record(
+        z.object({
+          url: z.string(),
+          label: z.string(),
+          icon: z.string(),
+        }),
+      )
+      .optional(),
+  }),
+})
+
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    author: z.string().optional(),
+    author: z.string(),
     // Use string transformation first to handle various date formats
     pubDate: z
       .string()
@@ -42,4 +61,4 @@ const blog = defineCollection({
 })
 
 // 4. Export a single `collections` object to register you collection(s)
-export const collections = { projects, blog }
+export const collections = { projects, blog, authors }

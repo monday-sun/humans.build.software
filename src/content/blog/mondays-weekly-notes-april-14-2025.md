@@ -1,7 +1,7 @@
 ---
-title: "Monday’s Weekly Notes: April 14, 2025"
-description: "“Fast and Furious”"
-author: "Monday Romelfanger"
+title: "Monday's Weekly Notes: April 14, 2025"
+description: ""Fast and Furious""
+author: "monday-romelfanger"
 pubDate: "2025-04-14T00:00:00Z"
 updatedDate: "2025-04-14T16:00:00.000Z"
 tags:
@@ -19,14 +19,14 @@ _Weekly Notes are here to inspire others experimenting right now, give me a fram
 
 - Made a lot of progress on [Quilt](https://github.com/pandallel/quilt): the modular actor system clicked, SQLite persistence landed, and the first full path through the cutting and swatching pipeline works.
 - Started writing as a companion to the dev work — two blog posts published, the reflection is helpful
-- The Cursor workflow is starting to prove itself, even if it’s still rough around the edges.
-- LLM-based workflows are fast but cognitively dense — I’m moving quickly, but it feels like carrying a lot at once.
+- The Cursor workflow is starting to prove itself, even if it's still rough around the edges.
+- LLM-based workflows are fast but cognitively dense — I'm moving quickly, but it feels like carrying a lot at once.
 
 ---
 
 ## In-Progress / Work Notes
 
-- Built and integrated Quilt’s actor system:
+- Built and integrated Quilt's actor system:
   - The actor model was suggested by an LLM but made real when I connected it to how I already think — code as cooperating systems.
   - Formalizing this helped break the work into intuitive, modular pieces.
 
@@ -54,7 +54,7 @@ _Weekly Notes are here to inspire others experimenting right now, give me a fram
 
 ## Thinking & Reflection
 
-- For Quilt, Contextual “spreads” are still a conceptual knot:
+- For Quilt, Contextual "spreads" are still a conceptual knot:
   - The metaphor is solid, but implementation will need trial and error
 - Starting to see my work as cyclical: build → reflect → teach
 - Even with good velocity, I feel behind in documentation and reflection. Hopefully these weekly notes will help figure out what's important to say.
@@ -72,7 +72,7 @@ These are my current Cursor rules. I can feed it commands to facilitate a largel
   **Cons:** My implementation plan doc is a giant backlog. I really wish I had a nicer task tracking tool to use here. This is another thing I want to try the Github mcp for.
 
 - 📄 [`modes_of_operation.mdc`](/assets/files/2025-04-14/modes_of_operation.mdc)  
-  This governs the Cursor event loop. It starts in PLAN mode and doesn’t switch to ACT until I explicitly tell it to `ACT`. Every response starts with `# Mode: PLAN` or `# Mode: ACT` so I know what state it's in.
+  This governs the Cursor event loop. It starts in PLAN mode and doesn't switch to ACT until I explicitly tell it to `ACT`. Every response starts with `# Mode: PLAN` or `# Mode: ACT` so I know what state it's in.
   **Pros:** Helps prevent the LLM from just going. Claude in Cursor is very eager to please with completed work. Helps the LLM frame the work before executing. Gemini is much better at planning and following the memory bank rules. Claude is better at acting because it's fine-tuned to the tools.
   **Cons:** Claude is not very good at sticking to these rules anyway, and it's less fluid and 'natural' feeling.
   **Source:** [reddit post](https://www.reddit.com/r/cursor/comments/1jqvqjx/thanks_to_the_memory_system_post_productivity/)
@@ -81,7 +81,7 @@ These are my current Cursor rules. I can feed it commands to facilitate a largel
 - 📄 [`memory_bank.mdc`](/assets/files/2025-04-14/memory_bank.mdc)  
   This defines how Cursor treats memory. It assumes total amnesia between sessions and reads the memory bank files on every task. The structure is layered — project briefs, system patterns, current focus — and acts as the persistent state for the project.  
   Cursor reads from this when initializing, and I can trigger updates with `update memory bank`.  
-  **Pros:** Gives Cursor continuity. I don’t have to restate context every time. Especially powerful for long-form or paused work.  
+  **Pros:** Gives Cursor continuity. I don't have to restate context every time. Especially powerful for long-form or paused work.  
   **Cons:** Not ideal for teams and it's weird to maintain docs just for the LLM to use.
   **Source:** [reddit post](https://www.reddit.com/r/cursor/comments/1jqvqjx/thanks_to_the_memory_system_post_productivity/)
 
@@ -94,10 +94,10 @@ These are my current Cursor rules. I can feed it commands to facilitate a largel
 ---
 
 **Overall Use Case:**  
-These rules make Cursor act like a junior dev or co-pilot with strong instincts and a short memory. I drive the flow by giving high-level commands, and it uses the rule set to respond consistently — whether I’m asking for a review, a next step, or a rewrite.
+These rules make Cursor act like a junior dev or co-pilot with strong instincts and a short memory. I drive the flow by giving high-level commands, and it uses the rule set to respond consistently — whether I'm asking for a review, a next step, or a rewrite.
 
 **Biggest Wins:**  
-- I don’t need to remember what to ask — I just say what I need (`code review`, `plan`, `test`, etc.) and Cursor knows what to do.
+- I don't need to remember what to ask — I just say what I need (`code review`, `plan`, `test`, etc.) and Cursor knows what to do.
 - The structure helps me scale — I can pause work, come back, and pick up from where the memory left off.
 - It feels less like prompting, more like pairing with a teammate.
 
@@ -139,7 +139,7 @@ These rules make Cursor act like a junior dev or co-pilot with strong instincts 
 
 ## Life & Grounding
 
-- Playing *Spiritfarer*. It’s steady, gentle, and hitting the right rhythm.
+- Playing *Spiritfarer*. It's steady, gentle, and hitting the right rhythm.
 - Mid-day Monday is a lovely time for grocery shopping. It's nice to feel free of the corporate schedule.
 
 ---
@@ -156,7 +156,7 @@ These rules make Cursor act like a junior dev or co-pilot with strong instincts 
 - Working on a post about overall thoughts on an LLM-based workflow
 - First weekly notes!!
 - For non-cursor LLM chats if you're having markdown rendering problems:
-  > “Please produce a Markdown document that is entirely wrapped in a single code block with outer backticks (using four backticks for the outer fence) so that inner formatting is preserved.”
+  > "Please produce a Markdown document that is entirely wrapped in a single code block with outer backticks (using four backticks for the outer fence) so that inner formatting is preserved."
 - Join me on [VibeColab Discord](https://discord.gg/TXhqgKkr) 
 
 ---
@@ -165,10 +165,10 @@ These rules make Cursor act like a junior dev or co-pilot with strong instincts 
 
 Curious how others are shaping their LLM workflows. Are you trying something similar with Cursor or memory-based systems?
 
-This week I’m especially thinking about:
+This week I'm especially thinking about:
 - How to make memory banks more team-friendly
 - Integrating LLM review flows with GitHub
 - Finding a better bridge between GitHub and Cursor-based reviews  
   - I tried [`ai-code-review-action`](https://github.com/marketplace/actions/ai-code-review-action), but it overwhelmed me with low-priority comments that I had to manually feed back into Cursor. It broke the rhythm more than it helped.
 
-If you’re experimenting in this space, I’d love to hear what’s working (or not).
+If you're experimenting in this space, I'd love to hear what's working (or not).

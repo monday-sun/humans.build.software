@@ -1,8 +1,14 @@
 ---
 import CallToAction from './CallToAction.astro'
 import { siteConfig } from '../data/site.js'
-import { authorData } from '../data/author.js'
 import { Icon } from 'astro-icon/components'
+import { getCollection } from 'astro:content'
+
+// Get the primary author for credit
+const authors = await getCollection('authors')
+const primaryAuthor = authors.find((author) => author.id === 'monday-romelfanger')
+const githubLink = primaryAuthor?.data.social?.github?.url || 'https://github.com/monday-sun'
+const authorName = primaryAuthor?.data.name || 'Monday Romelfanger'
 
 const currentYear = new Date().getFullYear()
 ---
@@ -13,9 +19,7 @@ const currentYear = new Date().getFullYear()
     <div class="container">
       <div class="footer-content">
         <p>
-          &copy; {currentYear} - {siteConfig.name}. Created by <a href={authorData.social.github.url}
-            >{authorData.name}</a
-          >.
+          &copy; {currentYear} - {siteConfig.name}. Created by <a href={githubLink}>{authorName}</a>.
         </p>
         <p class="theme-credit">
           Built with <a
