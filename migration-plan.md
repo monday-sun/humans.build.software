@@ -144,13 +144,13 @@
 - **Goal:** Replace the default AstroWind aesthetic with your specified color palette and typography.
 - **Implementation Time:** 0.5-1 day
 - **Tasks:**
-  1.  Modify `tailwind.config.js` to inject your custom color palette (primary, secondary, accent, muted). (0.25 days)
-  2.  Identify where base colors are applied (likely in `src/assets/styles/tailwind.css` or potentially within layout/UI components) and update them to use your custom colors. (0.25 days)
-  3.  Choose desired fonts (e.g., Atkinson Hyperlegible, IBM Plex Sans) and integrate them. This might involve: (0.5 days)
-      - Adding `@font-face` rules in `src/assets/styles/tailwind.css`.
-      - Installing via npm if available as packages.
-      - Configuring Tailwind (`tailwind.config.js`) to use these fonts for sans-serif/serif/mono families.
-  4.  Verify font loading and application across the site in dev mode.
+  1.  ✅ Modify `tailwind.config.js` to inject your custom color palette (primary, secondary, accent, muted). (0.25 days)
+  2.  ✅ Identify where base colors are applied (likely in `src/assets/styles/tailwind.css` or potentially within layout/UI components) and update them to use your custom colors. (0.25 days)
+  3.  ✅ Choose desired fonts (e.g., Atkinson Hyperlegible, IBM Plex Sans) and integrate them. This might involve: (0.5 days)
+      - ✅ Adding `@font-face` rules in `src/assets/styles/tailwind.css`.
+      - ✅ Installing via npm if available as packages.
+      - ✅ Configuring Tailwind (`tailwind.config.js`) to use these fonts for sans-serif/serif/mono families.
+  4.  ✅ Verify font loading and application across the site in dev mode.
 - **Learning Outcome:** Gain familiarity with customizing AstroWind's visual appearance via Tailwind configuration and base CSS. Understand how to integrate and apply custom fonts.
 
 ## Milestone 3: Homepage Revamp ("Soft Invitation")
