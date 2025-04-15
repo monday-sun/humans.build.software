@@ -183,7 +183,17 @@
      - Add pagination if needed
      - Ensure consistent styling with the homepage
 
-  2. **Create Notes Section** (1-1.5 days)
+  2. ✅ **Multi-Author Support** (0.5-1 day)
+
+     - ✅ Created authors content collection in `src/content.config.mjs`
+     - ✅ Created a directory structure for authors at `src/content/authors/`
+     - ✅ Migrated existing author data to the new collection
+     - ✅ Updated blog post schema to reference author IDs
+     - ✅ Created individual author pages with bios rendered as markdown
+     - ✅ Updated navigation and about page to support the new author system
+     - ✅ Ensured all blog posts reference authors by ID
+
+  3. **Create Notes Section** (1-1.5 days)
 
      - Create a separate content collection for "Notes" (shorter-form content)
      - Define schema for Notes in the content config
@@ -191,34 +201,34 @@
      - Develop a streamlined template for individual note posts
      - Add to site navigation
 
-  3. **Portfolio Page Placeholder** (0.5 days)
+  4. **Portfolio Page Placeholder** (0.5 days)
 
      - Create a simple "Coming Soon" portfolio page
      - Design a visually appealing placeholder with future intent
      - Add to site navigation
 
-  4. **Blog Post Cover Images** (0.5-1 day)
+  5. **Blog Post Cover Images** (0.5-1 day)
 
      - Add robust cover image support to blog post schema
      - Update blog post layout to display cover images prominently
      - Ensure responsive image handling with appropriate sizing
      - Implement image optimization if not already configured
 
-  5. **RSS Feed Implementation** (0.5 days)
+  6. **RSS Feed Implementation** (0.5 days)
 
      - Install and configure RSS feed integration
      - Ensure both blog posts and notes are included in feeds
      - Add RSS link to the site footer and/or header
      - Test feed validity with an RSS validator
 
-  6. **Email Signup Integration** (1 day)
+  7. **Email Signup Integration** (1 day)
 
      - Research email subscription options (likely Mailchimp or ConvertKit)
      - Create a clean, non-intrusive signup component
      - Add to strategic locations (blog sidebar, end of posts)
      - Test signup flow from end to end
 
-  7. **About Page Enhancement** (0.5 days)
+  8. **About Page Enhancement** (0.5 days)
      - Fix styling issues on the About page
      - Add author photo with appropriate sizing and positioning
      - Ensure consistent typography and layout with rest of site
