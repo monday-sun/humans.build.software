@@ -67,18 +67,48 @@
       - Configure analytics or other settings as needed
       - Set up proper paths based on deployment plan
 
-  5.  Migrate existing Markdown blog posts from Jekyll's `dev-blog/_posts` directory to Astro's content directory (e.g., `src/content/blog/`, verify structure). (0.5-1 day)
+  5.  Define Blog Content Collection and Migrate Posts: (1-1.5 days)
 
-      - Review and adjust frontmatter fields (check theme's requirements or content collection schema in `src/content/config.ts` if it exists).
-      - Ensure date formats are compatible.
-      - Example copy command:
+      - **Update Content Configuration (`src/content.config.mjs`):**
 
-      ```bash
-      # From project root
-      mkdir -p src/content/blog # Adjust target path as needed
-      cp -r dev-blog/_posts/* src/content/blog/ # Or use a migration script
-      # Manual frontmatter adjustments will be needed after copying
-      ```
+        - Import `defineCollection` and `z` from `astro:content`.
+        - Define a new `blog` collection using `defineCollection`.
+        - Set the `loader` to point to `./src/content/blog/`.
+        - Define the schema using `z.object({})` with the following fields:
+          - `title: z.string()`
+          - `description: z.string()`
+          - `author: z.string().optional()`
+          - `pubDate: z.date()` (Will be derived from filename during migration)
+          - `updatedDate: z.date().optional()` (Will be mapped from old `last_modified_at` field)
+          - `tags: z.array(z.string()).optional()` (Will combine old `categories` and `tags`)
+          - `image: z.object({ src: z.string(), alt: z.string() }).optional()`
+          - `draft: z.boolean().optional()`
+        - Add the `blog` collection to the `export const collections = { ... }` object.
+
+      - **Create Content Directory:**
+
+        ```bash
+        mkdir -p src/content/blog
+        ```
+
+      - **Copy Posts:**
+
+        ```bash
+        # From project root
+        cp -r dev-blog/_posts/* src/content/blog/
+        ```
+
+      - **Adapt Frontmatter:**
+        - Manually edit each Markdown file in `src/content/blog/` or create a script to:
+          - Remove the old Jekyll frontmatter delimiters (`---`).
+          - Add Astro/MDX frontmatter delimiters (`---`).
+          - Map old fields to the new schema:
+            - Extract date from filename (e.g., `YYYY-MM-DD`) and set as `pubDate`.
+            - Map `last_modified_at` to `updatedDate`.
+            - Combine `categories` and `tags` into the `tags` array.
+            - Ensure `title`, `description`, and `author` are present and correctly formatted.
+            - Add optional fields like `image` or `draft` as needed.
+          - Ensure date fields (`pubDate`, `updatedDate`) are in a format Astro/Zod can parse (e.g., `YYYY-MM-DD` or ISO 8601 string).
 
   6.  Set up basic site navigation in the theme's navigation configuration file (verify location, possibly `src/data/navigation.js` or similar). (0.5 days)
 
