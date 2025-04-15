@@ -158,10 +158,16 @@
 - **Goal:** Transform the default homepage layout into a warmer, more personal "soft invitation."
 - **Implementation Time:** 1-2 days
 - **Tasks:**
-  1.  Analyze the structure of `src/pages/index.astro` and the widgets it imports (likely from `src/components/widgets/`). Identify the default Hero component. (0.5 days)
-  2.  Modify or replace the Hero component's content with your whimsical welcome message and tagline ("Exploring software..."). (0.5 days)
-  3.  Create a simple Astro component for the "Today's Mood" block. Initially, populate it with static content (emoji/quote). Place this component prominently on the homepage. (0.5 days)
-  4.  Review other default homepage sections/widgets and remove or significantly restyle any that feel too much like a "consulting services" landing page. (0.5 days)
+  1.  ✅ Analyze the structure of `src/pages/index.astro` and the widgets it imports (likely from `src/components/widgets/`). Identify the default Hero component. (0.5 days)
+  2.  ✅ Modify or replace the Hero component's content with your whimsical welcome message and tagline ("Exploring software..."). (0.5 days)
+  3.  ❌ Create a simple Astro component for the "Today's Mood" block. Initially, populate it with static content (emoji/quote). Place this component prominently on the homepage. (0.5 days)
+      - **Note:** Decided to skip this component as it would require ongoing maintenance.
+  4.  ✅ Review other default homepage sections/widgets and remove or significantly restyle any that feel too much like a "consulting services" landing page. (0.5 days)
+      - **Implementation Notes:**
+        - Removed all template sections (Features, ContentMedia, FAQ, Counters)
+        - Added a "What to Expect" section with blog description
+        - Added a "Recent Posts" section with latest blog entries in a card layout
+        - Styled cards with hover effects and clean typography
 - **Learning Outcome:** Understand how to modify Astro page structure and compose pages using Astro components/widgets. Practice adapting existing components and creating simple new ones.
 
 ## Milestone 4: Blog Enhancement ("Zine Energy")
