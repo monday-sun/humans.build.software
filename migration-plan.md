@@ -122,12 +122,19 @@
   7.  ✅ Run `npm run dev` to verify that the site builds, the homepage loads, and blog posts are accessible and rendering correctly with the theme's styling and merged configurations.
 
   8.  ✅ **Troubleshooting Blog Post Rendering:**
+
       - ✅ **File Structure:** Ensured content collection file structure matched the configuration
       - ✅ **Schema Validation:** Used string transformation for dates to prevent validation errors
       - ✅ **Rendering Methods:** Successfully rendered content with the Content component
       - ✅ **Dynamic Routes:** Used entry.id for route parameters instead of slugs for more reliable routing
       - ✅ **Content Collections:** Applied best practices for accessing collection data
       - ✅ **Styling:** Created proper prose styling for blog content
+
+  9.  **Additional Theme Cleanup & Fixes:** (0.25 days)
+      - Update the Header component to correctly display the site name
+      - Remove or reduce prominence of the "Get this theme on GitHub" section
+      - Update the Footer component with correct author information
+      - Create a basic About page and ensure navigation links correctly
 
 - **Learning Outcome:** Understand the `accessible-astro-starter` theme's structure, configuration files, content setup, and basic rendering. Practice merging project-wide configurations. Assess raw content migration needs for this theme.
 
