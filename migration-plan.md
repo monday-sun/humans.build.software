@@ -170,70 +170,79 @@
         - Styled cards with hover effects and clean typography
 - **Learning Outcome:** Understand how to modify Astro page structure and compose pages using Astro components/widgets. Practice adapting existing components and creating simple new ones.
 
-## Milestone 4: Blog Enhancement ("Zine Energy")
+## Milestone 4: Blog Enhancements and Additional Features (Simplified Plan)
 
-- **Goal:** Customize blog post layout and add features for a distinctive "zine" feel using MDX.
-- **Implementation Time:** 2-3 days
+- **Goal:** Focus on practical improvements to enhance blog functionality and user experience
+- **Implementation Time:** 3-5 days
 - **Tasks:**
-  1.  Locate the primary blog post layout (e.g., `src/layouts/MarkdownLayout.astro` or similar defined in `src/content/config.ts`). (0.5 days)
-  2.  Modify the layout's header section to include placeholders or logic for: (1 day)
-      - "Mood when writing" (requires adding this field to post frontmatter).
-      - "Last updated" (can potentially pull from Git history using Astro utilities or require manual frontmatter field).
-      - Displaying tags as emojis (requires mapping tag strings to emojis, potentially in the layout or a helper function).
-  3.  Create custom MDX components (`.astro` files in `src/components/`) for your callouts (e.g., `HotTake.astro`, `NeuroHack.astro`, `HallucinationBadge.astro`). Style them distinctively. (1 day)
-  4.  Ensure MDX integration is set up correctly (`@astrojs/mdx` integration) and test using these custom components within your migrated `.md` or converted `.mdx` blog posts. (0.5 days)
-- **Learning Outcome:** Deepen understanding of Astro layouts, MDX integration, creating and using custom components within Markdown/MDX content, and potentially interacting with frontmatter or external data (like Git) in layouts.
 
-## Milestone 5: Visual Polish & Art Direction
+  1. **Review and Enhance Blog Page** (0.5-1 day)
 
-- **Goal:** Infuse the site with the "digital scrapbook" aesthetic using icons, dividers, and textures.
-- **Implementation Time:** 1-2 days
-- **Tasks:**
-  1.  Source or create doodle-style icons and hand-drawn divider assets. (0.5 days)
-  2.  Integrate icons into relevant UI elements (e.g., navigation links, list bullets, callout components) using `<img>` tags or potentially an icon component library if desired. (0.5 days)
-  3.  Add divider elements (CSS borders, background images, or SVG components) between sections or in headers/footers. (0.5 days)
-  4.  Apply subtle textured backgrounds or gradients using Tailwind utility classes directly in components/layouts or by extending the theme in `tailwind.config.js`. (0.5 days)
-  5.  Customize the site Header and Footer components (`src/components/widgets/Header.astro`, `Footer.astro`) to include elements like the rotating footer quote (start static).
-- **Learning Outcome:** Practice detailed UI refinement using CSS, Tailwind, and asset integration within the Astro component model.
+     - Analyze the current blog index page structure and design
+     - Improve post listing layout and readability
+     - Add pagination if needed
+     - Ensure consistent styling with the homepage
 
-## Milestone 6: Extra Features (Optional - Select as needed)
+  2. **Create Notes Section** (1-1.5 days)
 
-- **Goal:** Implement one or more of the suggested extra features.
-- **Implementation Time:** 1-3 days per feature
-- **Tasks (Example: "Lab" Page):**
-  1.  Define content structure for lab projects (could be a new content collection `src/content/lab/` with `.md`/`.mdx` files or a simple JSON/TS data file). (0.5 days)
-  2.  Create a new page route: `src/pages/lab.astro`. (0.25 days)
-  3.  Design and implement an Astro component to display lab project summaries/cards. (1 day)
-  4.  Fetch and render the lab project data on the `lab.astro` page. (0.5 days)
-  5.  Add a link to the Lab page in the main navigation (`src/navigation.js`). (0.25 days)
-- **Learning Outcome:** Practice creating new page routes, defining content structures (collections or data files), fetching/rendering data, and building feature-specific components. (Specific outcomes vary by chosen feature).
+     - Create a separate content collection for "Notes" (shorter-form content)
+     - Define schema for Notes in the content config
+     - Design a Notes index page at `/notes`
+     - Develop a streamlined template for individual note posts
+     - Add to site navigation
 
-## Milestone 7: Vercel Deployment & Final Review
+  3. **Portfolio Page Placeholder** (0.5 days)
 
-- **Goal:** Deploy the migrated and customized site to Vercel and perform final checks.
+     - Create a simple "Coming Soon" portfolio page
+     - Design a visually appealing placeholder with future intent
+     - Add to site navigation
+
+  4. **Blog Post Cover Images** (0.5-1 day)
+
+     - Add robust cover image support to blog post schema
+     - Update blog post layout to display cover images prominently
+     - Ensure responsive image handling with appropriate sizing
+     - Implement image optimization if not already configured
+
+  5. **RSS Feed Implementation** (0.5 days)
+
+     - Install and configure RSS feed integration
+     - Ensure both blog posts and notes are included in feeds
+     - Add RSS link to the site footer and/or header
+     - Test feed validity with an RSS validator
+
+  6. **Email Signup Integration** (1 day)
+
+     - Research email subscription options (likely Mailchimp or ConvertKit)
+     - Create a clean, non-intrusive signup component
+     - Add to strategic locations (blog sidebar, end of posts)
+     - Test signup flow from end to end
+
+  7. **About Page Enhancement** (0.5 days)
+     - Fix styling issues on the About page
+     - Add author photo with appropriate sizing and positioning
+     - Ensure consistent typography and layout with rest of site
+     - Review and improve author bio content if needed
+
+- **Learning Outcome:** Master practical aspects of building a content-focused site with Astro, including content collections, responsive design, and third-party integrations.
+
+## Milestone 5: Deployment and Optimization
+
+- **Goal:** Deploy the site and ensure optimal performance
 - **Implementation Time:** 0.5-1 day
 - **Tasks:**
 
-  1.  Ensure the Vercel adapter is properly configured in `astro.config.mjs` (see Milestone 1, Task 2). Ensure `output: 'static'` is set if using static deployment.
+  1. **Vercel Configuration and Deployment** (0.5 days)
 
-  2.  Run `npm run build` to generate the production site in `dist/`.
+     - Ensure Vercel adapter is properly configured in `astro.config.mjs`
+     - Run production build and test locally
+     - Deploy to Vercel and verify functionality
+     - Set up custom domain if needed
 
-  3.  Test the production build locally using `npm run preview`.
+  2. **Performance Optimization** (0.5 days)
+     - Analyze Lighthouse scores
+     - Optimize image loading and rendering
+     - Implement any necessary performance improvements
+     - Ensure accessibility compliance
 
-  4.  Set up Vercel deployment:
-
-      - Connect your GitHub repository to Vercel
-      - Vercel should automatically detect:
-        - That this is an Astro project
-        - The build command (`astro build`)
-        - The output directory (`dist`)
-
-  5.  Deploy and verify:
-
-      - Trigger the initial deployment
-      - Verify the live site functions correctly
-      - Set up your custom domain if needed
-
-  6.  Perform cross-browser/device testing and fix any final styling or functional issues.
-
-- **Learning Outcome:** Understand Astro's build process with the Vercel adapter and how to configure Vercel for optimal deployment.
+- **Learning Outcome:** Understand Astro's build process with the Vercel adapter and optimization techniques for production deployment.
