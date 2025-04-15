@@ -104,6 +104,7 @@
         ```
 
       - **Adapt Frontmatter:**
+
         - Manually edit each Markdown file in `src/content/blog/` or create a script to:
           - Remove the old Jekyll frontmatter delimiters (`---`).
           - Add Astro/MDX frontmatter delimiters (`---`).
@@ -115,9 +116,29 @@
             - Add optional fields like `image` or `draft` as needed.
           - Ensure date fields (`pubDate`, `updatedDate`) are in a format Astro/Zod can parse (e.g., `YYYY-MM-DD` or ISO 8601 string).
 
+      - **Known Challenges:**
+        - **Date Handling:** Astro's content collections require careful handling of date fields in the schema. The `z.date()` validator is strict and may need transformation functions to handle string date formats.
+        - **Content Rendering:** Content collections require specific patterns for properly rendering markdown content. The rendering approach differs between using dynamic routes and static site generation.
+        - **Filename/Path Handling:** Be careful with filenames during migration - changes in filenames can lead to routing/URL issues in the final site.
+        - **Debug Steps:** When troubleshooting content collection issues, inspect the raw collection entries to understand their structure and available methods.
+        - **MDX Alternative:** Consider installing the MDX integration (`@astrojs/mdx`) early in the process, which may provide more flexibility for content rendering and component usage within markdown. This approach might be necessary for the "zine-style" features planned in Milestone 4.
+          ```bash
+          npm install @astrojs/mdx
+          ```
+          Then add it to `astro.config.mjs` integrations. This would allow using components directly in markdown files.
+
   6.  Set up basic site navigation in the theme's navigation configuration file (verify location, possibly `src/data/navigation.js` or similar). (0.5 days)
 
   7.  Run `npm run dev` to verify that the site builds, the homepage loads, and blog posts are accessible and rendering correctly with the theme's styling and merged configurations.
+
+  8.  **Troubleshooting Blog Post Rendering (if needed):**
+      - **Common Issues:**
+        - **File Structure:** Ensure the content collection file structure exactly matches what's configured in `content.config.mjs`
+        - **Schema Validation:** Use console logs to identify schema validation errors (especially with dates)
+        - **Rendering Methods:** Debug the rendering pipeline by first displaying raw content before attempting to render markdown
+        - **Dynamic Routes:** When using `[post].astro` routes, ensure the params from getStaticPaths match exactly with content collection IDs
+        - **Content Collections:** Understand that Astro's content collection API may change between versions - refer to the current documentation
+        - **Fallback Approach:** If markdown rendering is problematic, consider using a simple HTML rendering of post.body as a temporary solution
 
 - **Learning Outcome:** Understand the `accessible-astro-starter` theme's structure, configuration files, content setup, and basic rendering. Practice merging project-wide configurations. Assess raw content migration needs for this theme.
 
