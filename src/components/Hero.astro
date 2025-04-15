@@ -1,13 +1,15 @@
 ---
 import { Icon } from 'astro-icon/components'
+import { Image } from 'astro:assets'
+import heroImage from '../assets/img/hero.png'
 import { siteConfig } from '../data/site.js'
 
-const { src = '/astronaut-hero-img.webp' } = Astro.props
+const { src = heroImage } = Astro.props
 ---
 
 <section class="hero my-24">
   <div class="container">
-    <div class="grid grid-cols-1 items-center gap-24 lg:grid-cols-2">
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
       <div class="flex flex-col items-center gap-8 md:items-start">
         <h1 class="text-center text-6xl md:text-left lg:text-8xl">
           <slot
@@ -29,7 +31,7 @@ const { src = '/astronaut-hero-img.webp' } = Astro.props
           </a>
         </div>
       </div>
-      <img class="hidden lg:block" src={src} alt="" decoding="async" />
+      <Image class="hidden lg:block" src={src} alt="Hero image" width="800" height="450" />
     </div>
   </div>
 </section>
