@@ -1,0 +1,97 @@
+---
+import DefaultLayout from '../../layouts/DefaultLayout.astro'
+import { Image } from 'astro:assets'
+import { siteConfig } from '../../data/site.js'
+import { authorData } from '../../data/author.js'
+import { Icon } from 'astro-icon/components'
+---
+
+<DefaultLayout title="About" description="About the author of Humans Build Software">
+  <section class="my-12">
+    <div class="container">
+      <h1>About</h1>
+      <div class="content">
+        <div class="author-info space-content mt-4">
+          <div class="author-header">
+            <h2>About {authorData.name}</h2>
+            <p class="author-pronouns">{authorData.pronouns}</p>
+          </div>
+
+          <div class="author-bio" set:html={authorData.bio} />
+
+          <div class="connect">
+            <h3>Connect with me:</h3>
+            <div class="social-links">
+              {
+                Object.entries(authorData.social).map(([key, social]) => (
+                  <a href={social.url} class="social-link" title={social.label}>
+                    <Icon name={social.icon} />
+                    <span>{social.label}</span>
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</DefaultLayout>
+
+<style>
+  .content {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .space-content {
+    max-width: 70ch;
+  }
+
+  .author-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .author-pronouns {
+    color: var(--neutral-700);
+    font-style: italic;
+  }
+
+  .author-bio p {
+    margin-bottom: 1rem;
+  }
+
+  .connect {
+    margin-top: 2rem;
+  }
+
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s ease;
+    border-radius: 2rem;
+    background-color: var(--neutral-200);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+  }
+
+  .social-link:hover {
+    background-color: var(--primary-100);
+  }
+
+  .social-link [data-icon] {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+</style>

@@ -2,6 +2,7 @@
 import Navigation from '../components/Navigation.astro'
 import { SkipLink } from 'accessible-astro-components'
 import { Icon } from 'astro-icon/components'
+import { authorData } from '../data/author.js'
 ---
 
 <header>
@@ -14,28 +15,15 @@ import { Icon } from 'astro-icon/components'
       <a href="/blog/">Blog</a>
     </li>
     <li class="menu-item">
-      <a href="/portfolio/">Portfolio</a>
-    </li>
-    <li class="menu-item has-dropdown">
-      <button aria-haspopup="true" aria-expanded="false">Example Pages</button>
-      <ul class="dropdown-menu">
-        <li class="submenu-item">
-          <a href="/mdx-page/">MDX Page</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/markdown-page/">Markdown Page</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/accessible-components">Accessible Components</a>
-        </li>
-      </ul>
+      <a href="/about/">About</a>
     </li>
     <li class="menu-item">
-      <a href="https://accessible-astro.incluud.dev/" rel="external">Docs</a>
+      <a href="/portfolio/">Portfolio</a>
     </li>
-    <li class="menu-item type-icon">
-      <a href="https://github.com/markteekman/accessible-astro-starter" title="Go to the GitHub page">
-        <Icon name="ion:logo-github" />
+    <li class="menu-item">
+      <a href={authorData.social.coffee.url} class="coffee-link" title={authorData.social.coffee.label}>
+        <Icon name={authorData.social.coffee.icon} />
+        <span>{authorData.social.coffee.label}</span>
       </a>
     </li>
   </Navigation>
@@ -61,6 +49,37 @@ import { Icon } from 'astro-icon/components'
       &:hover {
         [data-icon] path {
           fill: var(--action-color-state);
+        }
+      }
+    }
+
+    .coffee-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      border: 2px solid var(--action-color);
+      border-radius: 2rem;
+      background-color: var(--background);
+      padding: 0.5rem 1rem;
+      color: var(--action-color);
+      text-decoration: none;
+
+      [data-icon] {
+        width: 1.2rem;
+        height: 1.2rem;
+
+        path {
+          fill: var(--action-color);
+        }
+      }
+
+      &:hover {
+        background-color: var(--action-color);
+        color: var(--background);
+
+        [data-icon] path {
+          fill: var(--background);
         }
       }
     }

@@ -1,5 +1,8 @@
 ---
 import CallToAction from './CallToAction.astro'
+import { siteConfig } from '../data/site.js'
+import { authorData } from '../data/author.js'
+import { Icon } from 'astro-icon/components'
 
 const currentYear = new Date().getFullYear()
 ---
@@ -8,11 +11,41 @@ const currentYear = new Date().getFullYear()
   <CallToAction />
   <section class="py-8">
     <div class="container">
-      <p>
-        &copy; {currentYear} - Starter Theme for <a href="https://astro.build/">Astro</a>. Made with ❤️ by <a
-          href="https://github.com/markteekman">Mark Teekman</a
-        >.
-      </p>
+      <div class="footer-content">
+        <p>
+          &copy; {currentYear} - {siteConfig.name}. Created by <a href={authorData.social.github.url}
+            >{authorData.name}</a
+          >.
+        </p>
+        <p class="theme-credit">
+          Built with <a
+            href="https://astro.build/themes/details/accessible-astro-starter/"
+            target="_blank"
+            rel="noopener noreferrer">Accessible Astro</a
+          >.
+        </p>
+      </div>
     </div>
   </section>
 </footer>
+
+<style>
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .theme-credit {
+    opacity: 0.8;
+    font-size: 0.9rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer-content {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+</style>
