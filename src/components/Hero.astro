@@ -4,7 +4,10 @@ import { Image } from 'astro:assets'
 import heroImage from '../assets/img/hero.png'
 import { siteConfig } from '../data/site.js'
 
-const { src = heroImage } = Astro.props
+const {
+  src = heroImage,
+  alt = 'A cozy, cartoon-style desk scene with a laptop showing colorful code and a friendly AI chat. A cat plays with a red-orange yarn ball beside a spilled coffee mug and pastel sticky notes. Pride flags sit in a pencil cup near leafy plants, with sunlight streaming through a window and a smiling sun in the sky.',
+} = Astro.props
 ---
 
 <section class="hero my-24">
@@ -31,7 +34,7 @@ const { src = heroImage } = Astro.props
           </a>
         </div>
       </div>
-      <Image class="hidden lg:block" src={src} alt="Hero image" width="800" height="450" />
+      <Image class="hidden lg:block" src={src} alt={alt} width="800" height="450" />
     </div>
   </div>
 </section>
