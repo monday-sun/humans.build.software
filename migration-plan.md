@@ -211,12 +211,14 @@
      - ~~Design a visually appealing placeholder with future intent~~
      - ~~Add to site navigation~~
 
-  5. **Blog Post Cover Images** (0.5-1 day)
+  5. ✅ **Blog Post Cover Images** (0.5-1 day)
 
-     - Add robust cover image support to blog post schema
-     - Update blog post layout to display cover images prominently
-     - Ensure responsive image handling with appropriate sizing
-     - Implement image optimization if not already configured
+     - ✅ Added robust cover image support to blog post schema (`src/content/config.mjs`).
+     - ✅ Updated blog list layout (`src/pages/blog/[...page].astro`) to pass image to `Card`.
+     - ✅ Updated blog post layout (`src/pages/blog/[post].astro`) to display cover images prominently using `<Image>`.
+     - ✅ Ensured responsive image handling with Tailwind classes.
+     - ✅ Implemented image optimization using Astro's `<Image>`.
+     - ✅ Added images to example posts (`crystal-ball.md`, `micro-commits.md`).
 
   6. **RSS Feed Implementation** (0.5 days)
 

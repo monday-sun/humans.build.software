@@ -11,6 +11,9 @@ tags:
   - 'cursor'
   - 'just-for-fun'
   - 'build-in-public'
+image:
+  src: /assets/img/crystal-ball.png
+  alt: "Screenshot of the Crystal Ball website showing a glowing purple orb with the text 'Ask me about your future...' and a button labeled 'Tell My Fortune'. Subtitle reads: A Very Really Real and Definitely Not Fake Fortune Teller."
 draft: false
 ---
 
@@ -19,8 +22,6 @@ _Transcripts are meant to be a reflection on a specific LLM interaction, explori
 ## What I Made
 
 Riding the high of my coming back post, I came across this [reddit post](https://www.reddit.com/r/BenignExistence/comments/1jrw823/im_a_very_really_real_and_definitely_not_fake/), and I had the goofy idea to make a website to do this. I dunno why, just cause. So I did pure vibe coding in less than an hour. Introducing: [Crystal Ball](https://crystal-ball.pandallel.ai/)
-
-![Screenshot of the Crystal Ball website showing a glowing purple orb with the text "Ask me about your future..." and a button labeled "Tell My Fortune". Subtitle reads: A Very Really Real and Definitely Not Fake Fortune Teller.](/assets/img/crystal-ball.png)
 
 [Github Repo](https://github.com/pandallel/crystal-ball)
 

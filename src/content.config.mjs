@@ -72,4 +72,4 @@ const notes = defineCollection({
 })
 
 // 4. Export a single `collections` object to register you collection(s)
-export const collections = { projects, blog, authors, notes }
+export const collections = { blog, authors, notes }

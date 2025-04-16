@@ -36,6 +36,13 @@ interface Props {
 }
 
 const { entry, author } = Astro.props
+
+// --- DEBUGGING --- Add console log to inspect entry data
+console.log(`--- Data for post ID: ${entry.id} ---`);
+console.log(entry.data);
+console.log(`--------------------------------------`);
+// --- END DEBUGGING ---
+
 const { Content } = await render(entry)
 const { title, pubDate, updatedDate, tags } = entry.data
 

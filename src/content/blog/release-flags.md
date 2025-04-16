@@ -9,6 +9,9 @@ tags:
   - "development-process"
   - "release-flags"
   - "feature-flags"
+image:
+  src: /assets/img/release-flags.png
+  alt: A flat-style digital illustration shows a coral-red flag with a golden-yellow checkmark centered on it. The flag waves gently on a vertical yellow pole and is set against a soft mint green background. A pale yellow circle behind the flag adds visual balance and depth.
 draft: false
 ---
 People make mistakes, and AI tools are built on the mistakes we've made. No matter how much  test validation we add pre-release, something will inevitably fall through the cracks. If we shift our focus from preventing mistakes to detection and recovery, we can reduce the anxiety of changing existing code, reduce test overhead, and provide our customers with a better failure recovery.

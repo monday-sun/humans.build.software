@@ -7,7 +7,9 @@ updatedDate: '2024-04-21T01:15:22.000Z'
 tags:
   - 'micro-commits'
   - 'development-process'
-  - 'micro-commits'
+image:
+  src: /assets/img/micro-commits.png
+  alt: 'A flat-style digital illustration shows a cream-colored document with a red-orange header and golden-yellow lines, symbolizing text. A yellow circle with a checkmark overlaps the bottom corner of the document. Behind it is a large coral-red circle. The background is soft mint green, using a calm, minimal color palette.'
 draft: false
 ---
 

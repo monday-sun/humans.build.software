@@ -10,6 +10,9 @@ tags:
   - 'development-process'
   - 'quality-automation'
   - 'testing'
+image:
+  src: /assets/img/test-for-quality.png
+  alt: A flat-style digital illustration on a warm cream background, featuring a computer screen with code, a magnifying glass showing a green check mark, a checklist on a clipboard with green checkboxes, a pencil, a gear, and a potted plant. The color palette includes soft corals, mint greens, warm yellows, and neutral beiges.
 draft: false
 ---
 
