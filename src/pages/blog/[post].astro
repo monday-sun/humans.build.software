@@ -125,57 +125,12 @@ const formattedUpdatedDate = updatedDate
   }
 
   <section class="my-12">
-    <div class="prose dark:prose-invert container max-w-3xl">
+    <div class="prose prose-lg dark:prose-invert container max-w-3xl">
       <Content />
     </div>
   </section>
 </DefaultLayout>
 
 <style lang="scss">
-  .prose {
-    @apply text-lg leading-relaxed;
-
-    :global(h2) {
-      @apply text-2xl font-bold mt-8 mb-4;
-    }
-
-    :global(h3) {
-      @apply text-xl font-bold mt-6 mb-3;
-    }
-
-    :global(p) {
-      @apply mb-4;
-    }
-
-    :global(ul, ol) {
-      @apply mb-4 pl-6;
-    }
-
-    :global(li) {
-      @apply mb-1;
-    }
-
-    :global(blockquote) {
-      @apply border-l-4 border-neutral-300 dark:border-neutral-700 pl-4 italic;
-    }
-
-    :global(a) {
-      color: var(--action-color);
-      text-decoration: underline;
-
-      &:hover,
-      &:focus {
-        color: var(--action-color-state);
-        text-decoration: none;
-      }
-    }
-
-    :global(pre) {
-      @apply p-4 rounded-lg overflow-x-auto;
-    }
-
-    :global(img) {
-      @apply max-w-full rounded-lg my-6;
-    }
-  }
+  /* Removing custom prose styles as we're now using Tailwind Typography */
 </style>
