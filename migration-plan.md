@@ -220,12 +220,13 @@
      - ✅ Implemented image optimization using Astro's `<Image>`.
      - ✅ Added images to example posts (`crystal-ball.md`, `micro-commits.md`).
 
-  6. **RSS Feed Implementation** (0.5 days)
+  6. ✅ **RSS Feed Implementation** (0.5 days)
 
-     - Install and configure RSS feed integration
-     - Ensure both blog posts and notes are included in feeds
-     - Add RSS link to the site footer and/or header
-     - Test feed validity with an RSS validator
+     - ✅ Installed and configured `@astrojs/rss` integration
+     - ✅ Ensured both blog posts and notes are included in the feed (`/rss.xml`)
+     - ✅ Added RSS link to the site footer (`src/components/Footer.astro`)
+     - ✅ Configured feed items to include rendered HTML content using `markdown-it`
+     - ✅ Feed validity testing recommended
 
   7. **Email Signup Integration** (1 day)
 

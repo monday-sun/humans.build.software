@@ -18,8 +18,13 @@ const currentYear = new Date().getFullYear()
   <section class="py-8">
     <div class="container">
       <div class="footer-content">
-        <p>
-          &copy; {currentYear} - {siteConfig.name}. Created by <a href={githubLink}>{authorName}</a>.
+        <p class="footer-links">
+          <span>&copy; {currentYear} - {siteConfig.name}.</span>
+          <span>Created by <a href={githubLink}>{authorName}</a>.</span>
+          <a href="/rss.xml" title="RSS Feed" class="rss-link">
+            <Icon name="mdi:rss" class="ml-1 inline-block h-4 w-4" />
+            <span class="sr-only">RSS Feed</span>
+          </a>
         </p>
         <p class="theme-credit">
           Built with <a
@@ -38,6 +43,26 @@ const currentYear = new Date().getFullYear()
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    align-items: center;
+    gap: 0.5rem; /* Spacing between items */
+  }
+
+  .rss-link {
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.2s ease;
+    color: inherit; /* Inherit color from parent */
+    text-decoration: none;
+  }
+
+  .rss-link:hover,
+  .rss-link:focus {
+    color: var(--action-color); /* Use theme action color on hover */
   }
 
   .theme-credit {
