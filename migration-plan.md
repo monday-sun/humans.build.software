@@ -196,20 +196,20 @@
      - ✅ Updated navigation and about page to support the new author system
      - ✅ Ensured all blog posts reference authors by ID
 
-  3. **Create Notes Section** (1-1.5 days)
+  3. ✅ **Create Notes Section** (1-1.5 days)
 
      - ✅ Create a separate content collection for "Notes" (shorter-form content)
      - ✅ Define schema for Notes in the content config
      - ✅ Design a Notes index page at `/notes` (using `CardNoImage` component)
-     - Develop a streamlined template for individual note posts
-     - Add to site navigation
+     - ✅ Develop a streamlined template for individual note posts
+     - ✅ Add to site navigation
      - ✅ **Note:** Integrated latest notes alongside blog posts into the "Recent Activity" section on the homepage.
 
-  4. **Portfolio Page Placeholder** (0.5 days)
+  4. ~~**Portfolio Page Placeholder** (0.5 days)~~ (Removed)
 
-     - Create a simple "Coming Soon" portfolio page
-     - Design a visually appealing placeholder with future intent
-     - Add to site navigation
+     - ~~Create a simple "Coming Soon" portfolio page~~
+     - ~~Design a visually appealing placeholder with future intent~~
+     - ~~Add to site navigation~~
 
   5. **Blog Post Cover Images** (0.5-1 day)
 
@@ -233,10 +233,13 @@
      - Test signup flow from end to end
 
   8. **About Page Enhancement** (0.5 days)
+
      - Fix styling issues on the About page
      - Add author photo with appropriate sizing and positioning
      - Ensure consistent typography and layout with rest of site
      - Review and improve author bio content if needed
+
+  9. I broke the author link in the blog posts
 
 - **Learning Outcome:** Master practical aspects of building a content-focused site with Astro, including content collections, responsive design, and third-party integrations.
 
