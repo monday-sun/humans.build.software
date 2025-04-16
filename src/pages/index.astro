@@ -1,0 +1,78 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import Hero from '../components/Hero.astro'
+import CardNoImage from '../components/CardNoImage.astro'
+import { getCollection } from 'astro:content'
+
+// Fetch both blog posts and notes
+const blogPosts = await getCollection('blog', ({ data }) => !data.draft)
+const notes = await getCollection('notes', ({ data }) => !data.draft) // Assuming notes might have drafts too
+
+// Combine, sort, and slice
+const allContent = [...blogPosts, ...notes].sort(
+  (a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+)
+
+const recentContent = allContent.slice(0, 3)
+
+// Helper function to determine URL based on collection
+const getUrl = (item) => {
+  // Use item.id for 'blog' collection, item.slug for others (like 'notes')
+  const slugOrId = item.collection === 'blog' ? item.id : item.slug
+  return `/${item.collection}/${slugOrId}`
+}
+---
+
+<DefaultLayout title="Home">
+  <Hero />
+
+  <section class="my-24">
+    <div class="container">
+      <h2 class="mb-16 text-4xl">What to Expect</h2>
+      <div class="prose prose-lg dark:prose-invert mx-auto">
+        <p>
+          This blog is a collection of honest reflections on modern software development. Expect discussions about
+          building resilient systems, navigating team dynamics, integrating AI tools thoughtfully, and recovering
+          gracefully from inevitable mistakes.
+        </p>
+        <p>No polished corporate blog posts here—just genuine insights from the trenches of software development.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="my-24">
+    <div class="container">
+      <h2 class="mb-16 text-4xl">Recent Activity</h2>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {
+          recentContent.map((item) => (
+            <CardNoImage
+              title={item.data.title}
+              url={getUrl(item)}
+              footer={`${new Date(item.data.pubDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}`}
+            >
+              {item.data.description}
+            </CardNoImage>
+          ))
+        }
+      </div>
+      <div class="mt-12 text-center">
+        <a href="/blog" class="button has-icon"> View all posts </a>
+        <a href="/notes" class="button has-icon ml-4"> View all notes </a>
+      </div>
+    </div>
+  </section>
+</DefaultLayout>
+
+<style>
+  :global(.darkmode) .card {
+    /* This style might still be relevant if CardNoImage uses .card class and needs dark mode adjustments */
+    /* Review CardNoImage styles to confirm if this is needed */
+    /* Assuming CardNoImage handles its own dark mode theming, remove this */
+    /* background-color: var(--neutral-900); <-- Remove this */
+  }
+</style>

@@ -1,0 +1,64 @@
+---
+// This component renders a styled link button, often used for social links or calls to action.
+// It accepts href, label, iconName, and title as props.
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  href: string
+  label: string
+  iconName: string // Assumes icons are available via astro-icon
+  title?: string // Optional title attribute for accessibility/tooltips
+}
+
+const { href, label, iconName, title = label } = Astro.props
+---
+
+<a {href} class="styled-link-button" {title}>
+  <Icon name={iconName} />
+  <span>{label}</span>
+</a>
+
+<style lang="scss">
+  @use '../assets/scss/base/outline' as *; // Assuming outline styles might be needed
+
+  .styled-link-button {
+    display: inline-flex; // Use inline-flex to allow multiple buttons on one line
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    cursor: pointer; // Add cursor pointer for button-like feel
+    border: 2px solid var(--action-color);
+    border-radius: 2rem;
+    background-color: var(--background);
+    padding: 0.5rem 1rem;
+    color: var(--action-color);
+    text-decoration: none;
+
+    [data-icon] {
+      width: 1.2rem;
+      height: 1.2rem;
+      // Ensure icon color matches text initially and on hover
+      path {
+        fill: var(--action-color);
+        transition: fill 0.2s ease;
+      }
+    }
+
+    &:hover,
+    &:focus-visible {
+      outline: none; // Remove default outline, rely on border or custom outline from imported styles
+      border-color: var(--action-color-state); // Add focus-visible for accessibility
+      background-color: var(--primary-background);
+      color: var(--action-color-state);
+
+      [data-icon] path {
+        fill: var(--action-color-state);
+      }
+    }
+
+    // Apply focus styles if using the outline mixin
+    // &:focus-visible {
+    //   @include outline;
+    // }
+  }
+</style>

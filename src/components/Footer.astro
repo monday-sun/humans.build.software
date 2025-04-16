@@ -1,0 +1,80 @@
+---
+import CallToAction from './CallToAction.astro'
+import { siteConfig } from '../data/site.js'
+import { Icon } from 'astro-icon/components'
+import { getCollection } from 'astro:content'
+
+// Get the primary author for credit
+const authors = await getCollection('authors')
+const primaryAuthor = authors.find((author) => author.id === 'monday-romelfanger')
+const githubLink = primaryAuthor?.data.social?.github?.url || 'https://github.com/monday-sun'
+const authorName = primaryAuthor?.data.name || 'Monday Romelfanger'
+
+const currentYear = new Date().getFullYear()
+---
+
+<footer>
+  <CallToAction />
+  <section class="py-8">
+    <div class="container">
+      <div class="footer-content">
+        <p class="footer-links">
+          <span>&copy; {currentYear} - {siteConfig.name}.</span>
+          <span>Created by <a href={githubLink}>{authorName}</a>.</span>
+          <a href="/rss.xml" title="RSS Feed" class="rss-link">
+            <Icon name="mdi:rss" class="ml-1 inline-block h-4 w-4" />
+            <span class="sr-only">RSS Feed</span>
+          </a>
+        </p>
+        <p class="theme-credit">
+          Built with <a
+            href="https://astro.build/themes/details/accessible-astro-starter/"
+            target="_blank"
+            rel="noopener noreferrer">Accessible Astro</a
+          >.
+        </p>
+      </div>
+    </div>
+  </section>
+</footer>
+
+<style>
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    align-items: center;
+    gap: 0.5rem; /* Spacing between items */
+  }
+
+  .rss-link {
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.2s ease;
+    color: inherit; /* Inherit color from parent */
+    text-decoration: none;
+  }
+
+  .rss-link:hover,
+  .rss-link:focus {
+    color: var(--action-color); /* Use theme action color on hover */
+  }
+
+  .theme-credit {
+    opacity: 0.8;
+    font-size: 0.9rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer-content {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+</style>

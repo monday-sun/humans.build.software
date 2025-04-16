@@ -1,0 +1,181 @@
+---
+import DefaultLayout from '../../layouts/DefaultLayout.astro'
+import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
+import { getCollection, render } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+import { Image } from 'astro:assets'
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog')
+  const authors = await getCollection('authors')
+
+  // Create an author lookup map for easy reference
+  const authorMap = Object.fromEntries(authors.map((author) => [author.id, author]))
+
+
+  return blogEntries.map((entry) => {
+    const author = authorMap[entry.data.author] || null
+    return {
+      params: { post: entry.id },
+      props: { entry, author },
+    }
+  })
+}
+
+interface Props {
+  entry: CollectionEntry<'blog'>
+  author: CollectionEntry<'authors'> | null
+}
+
+const { entry, author } = Astro.props
+const { Content } = await render(entry)
+const { title, pubDate, updatedDate, tags } = entry.data
+
+// Render author content if author exists
+let AuthorContent
+if (author) {
+  const renderedAuthor = await render(author)
+  AuthorContent = renderedAuthor.Content
+}
+
+const formattedPubDate = new Date(pubDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+})
+const formattedUpdatedDate = updatedDate
+  ? new Date(updatedDate).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  : null
+---
+
+<DefaultLayout title={title} description={entry.data.description} url={`/blog/${entry.id}`}>
+  <div class="container">
+    <div class="mt-12">
+      <Breadcrumbs>
+        <BreadcrumbsItem href="/" label="Home" />
+        <BreadcrumbsItem href="/blog" label="Blog" />
+        <BreadcrumbsItem currentPage={true} label={title} />
+      </Breadcrumbs>
+    </div>
+  </div>
+  <section class="my-12">
+    <div class="container">
+      <h1>{title}</h1>
+      <div class="mt-2 flex flex-wrap gap-2">
+        {
+          tags &&
+            tags.map((tag) => (
+              <span class="rounded-md bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">{tag}</span>
+            ))
+        }
+      </div>
+      <div class="mt-4 text-neutral-700 dark:text-neutral-300">
+        {
+          author ? (
+            <div class="author-info flex items-center gap-3">
+              {author.data.avatar && (
+                <Image
+                  src={author.data.avatar}
+                  alt={`${author.data.name}'s avatar`}
+                  width={40}
+                  height={40}
+                  class="rounded-full"
+                />
+              )}
+              <div>
+                <p>
+                  By{' '}
+                  <a href={`/authors/${author.id}`} class="text-action hover:text-action-state">
+                    {author.data.name}
+                  </a>
+                  {author.data.pronouns && <span class="text-sm opacity-75">({author.data.pronouns})</span>}• Published{' '}
+                  {formattedPubDate}
+                </p>
+                {formattedUpdatedDate && <p>Last updated: {formattedUpdatedDate}</p>}
+              </div>
+            </div>
+          ) : (
+            <p>By Anonymous • Published {formattedPubDate}</p>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* Add Cover Image Section */}
+  {
+    entry.data.image && (
+      <section class="my-6">
+        <div class="container max-w-3xl">
+          <Image
+            src={entry.data.image.src}
+            alt={entry.data.image.alt}
+            width={1024} // Example width, adjust as needed
+            height={576} // Example height, adjust aspect ratio
+            format="webp" // Example format, adjust as needed
+            class="w-full h-auto rounded-lg shadow-md"
+          />
+        </div>
+      </section>
+    )
+  }
+
+  <section class="my-12">
+    <div class="prose dark:prose-invert container max-w-3xl">
+      <Content />
+    </div>
+  </section>
+</DefaultLayout>
+
+<style lang="scss">
+  .prose {
+    @apply text-lg leading-relaxed;
+
+    :global(h2) {
+      @apply text-2xl font-bold mt-8 mb-4;
+    }
+
+    :global(h3) {
+      @apply text-xl font-bold mt-6 mb-3;
+    }
+
+    :global(p) {
+      @apply mb-4;
+    }
+
+    :global(ul, ol) {
+      @apply mb-4 pl-6;
+    }
+
+    :global(li) {
+      @apply mb-1;
+    }
+
+    :global(blockquote) {
+      @apply border-l-4 border-neutral-300 dark:border-neutral-700 pl-4 italic;
+    }
+
+    :global(a) {
+      color: var(--action-color);
+      text-decoration: underline;
+
+      &:hover,
+      &:focus {
+        color: var(--action-color-state);
+        text-decoration: none;
+      }
+    }
+
+    :global(pre) {
+      @apply p-4 rounded-lg overflow-x-auto;
+    }
+
+    :global(img) {
+      @apply max-w-full rounded-lg my-6;
+    }
+  }
+</style>

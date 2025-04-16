@@ -1,0 +1,69 @@
+---
+import DefaultLayout from '../../layouts/DefaultLayout.astro'
+import AuthorDisplay from '../../components/AuthorDisplay.astro'
+import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
+import { getCollection, render } from 'astro:content'
+
+// Get all authors
+const allAuthors = await getCollection('authors')
+
+// Render content for each author
+const authorsWithContent = await Promise.all(
+  allAuthors.map(async (author) => {
+    const { Content } = await render(author)
+    return { ...author, Content }
+  }),
+)
+---
+
+<DefaultLayout title="About Us" description="Learn more about the authors behind Humans Build Software.">
+  <div class="container">
+    <div class="mt-12">
+      <Breadcrumbs>
+        <BreadcrumbsItem href="/" label="Home" />
+        <BreadcrumbsItem currentPage={true} label="About" />
+      </Breadcrumbs>
+    </div>
+
+    <section class="my-12">
+      <h1 class="mb-8 text-3xl font-bold">About Humans Build Software</h1>
+      <p class="mb-4 max-w-3xl text-lg">
+        I’m a software engineer who’s spent over a decade working in the guts of complex systems at companies like
+        Apple, Amazon, Tableau, and Mode Analytics. I specialize in refactoring scary legacy code, untangling technical
+        debt, and building process improvements that make room for humans to do their best work—even when the tools (or
+        the brains) are a little glitchy.
+      </p>
+
+      <p class="mb-4 max-w-3xl text-lg">
+        Over the years, I’ve led re-architecture efforts, shifted engineering cultures toward smaller, safer iterations,
+        and helped teams embrace tools like Feature Flags, contract-based boundaries, and monorepo-aware builds using
+        Nx. Most of my best work happens somewhere between “that file no one wants to open” and “the process nobody
+        knows how to fix.”
+      </p>
+
+      <p class="mb-4 max-w-3xl text-lg">
+        Mid-career, I came out as non-binary and began navigating attention, memory, and executive function challenges.
+        That forced me to reimagine my approach to development, and I’ve become deeply interested in workflows that
+        reduce cognitive load, support mistake recovery, and treat humans like the variable they are—not a bug to fix.
+      </p>
+
+      <p class="mb-4 max-w-3xl text-lg">
+        <em>Humans Build Software</em> is where I write about building tech in a way that works <em>for</em> people, not
+        just with them. It’s part blog, part lab, part therapy session with a build pipeline. When I’m not coding, I’m usually
+        working on fiber crafts, playing co-op board games, or being supervised by my cats.
+      </p>
+
+      <div class="authors-list space-y-16">
+        <h2 class="mb-8 text-2xl font-bold">Authors</h2>
+        {authorsWithContent.map((author) => <AuthorDisplay author={author.data} content={author.Content} />)}
+      </div>
+    </section>
+  </div>
+</DefaultLayout>
+
+<style lang="scss">
+  /* Optional: Add any specific styling for the about page if needed */
+  /* .authors-list { */
+  /*   ... */
+  /* } */
+</style>

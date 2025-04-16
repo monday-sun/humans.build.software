@@ -1,0 +1,49 @@
+// | -------------------------------------------------------------
+// | Color
+// | -------------------------------------------------------------
+
+$colors: (
+  primary: (
+    100: hsl(43, 100%, 85%),
+    // Lemon glow
+    200: hsl(43, 100%, 72%),
+    // Warm goldenrod
+    300: hsl(10, 84%, 70%),
+    // Coral/sunset peach
+    400: hsl(10, 70%, 60%),
+    // Slightly deeper coral
+    500: hsl(10, 90%, 40%),
+    // Action-state red-orange
+  ),
+  secondary: (
+    100: hsl(158, 100%, 80%),
+    // Soft mint green
+    200: hsl(158, 80%, 70%),
+    300: hsl(158, 60%, 60%),
+    400: hsl(158, 50%, 50%),
+    500: hsl(158, 60%, 35%),
+    // Accessible for contrast
+  ),
+  neutral: (
+    100: hsl(40, 100%, 97%),
+    // Cream
+    200: hsl(30, 50%, 94%),
+    // Sand beige
+    300: hsl(30, 30%, 90%),
+    // Warm gray-beige
+    400: hsl(30, 15%, 75%),
+    // Desaturated beige-gray
+    500: hsl(30, 10%, 60%),
+    // Muted neutral
+    600: hsl(30, 10%, 40%),
+    // Text-level muted
+    700: hsl(30, 12%, 25%),
+    800: hsl(30, 14%, 15%),
+    900: hsl(30, 20%, 10%),
+    // For max contrast
+  ),
+  dark: (
+    100: hsl(240, 4%, 9%),
+    // Keeping this as-is
+  ),
+);

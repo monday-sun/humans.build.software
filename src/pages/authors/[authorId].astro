@@ -1,0 +1,51 @@
+---
+import DefaultLayout from '../../layouts/DefaultLayout.astro'
+import AuthorDisplay from '../../components/AuthorDisplay.astro'
+import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
+import { getCollection, render } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+
+// Define type alias to avoid angle bracket confusion
+type Author = CollectionEntry<'authors'>
+
+export async function getStaticPaths() {
+  const authors = await getCollection('authors')
+
+  // Render content for each author
+  const authorsWithContent = await Promise.all(
+    authors.map(async (author) => {
+      const { Content } = await render(author)
+      return {
+        params: { authorId: author.id },
+        props: { author, Content },
+      }
+    }),
+  )
+
+  return authorsWithContent
+}
+
+interface Props {
+  author: Author // Use the type alias instead of CollectionEntry<'authors'>
+  Content: any // The rendered Markdown content
+}
+
+const { author, Content } = Astro.props
+const { name: authorName } = author.data
+---
+
+<DefaultLayout title={authorName} description={`Learn more about ${authorName}.`}>
+  <div class="container">
+    <div class="mt-12">
+      <Breadcrumbs>
+        <BreadcrumbsItem href="/" label="Home" />
+        <BreadcrumbsItem href="/about" label="About" />
+        <BreadcrumbsItem currentPage={true} label={authorName} />
+      </Breadcrumbs>
+    </div>
+
+    <section class="my-12">
+      <AuthorDisplay author={author.data} content={Content} />
+    </section>
+  </div>
+</DefaultLayout>

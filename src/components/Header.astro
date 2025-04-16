@@ -1,0 +1,73 @@
+---
+import Navigation from '../components/Navigation.astro'
+import { SkipLink } from 'accessible-astro-components'
+import { Icon } from 'astro-icon/components'
+import StyledLinkButton from './StyledLinkButton.astro'
+import { getCollection } from 'astro:content'
+
+// Get the primary author for coffee link
+const authors = await getCollection('authors')
+const primaryAuthor = authors.find((author) => author.id === 'monday-romelfanger')
+const coffeeLink = primaryAuthor?.data.social?.coffee || {
+  url: 'https://buymeacoffee.com/humans.build.software',
+  label: 'Buy me a Coffee',
+  icon: 'ion:cafe',
+}
+---
+
+<header>
+  <SkipLink />
+  <Navigation>
+    <li class="menu-item">
+      <a href="/">Home</a>
+    </li>
+    <li class="menu-item">
+      <a href="/blog/">Blog</a>
+    </li>
+    <li class="menu-item">
+      <a href="/notes">Notes</a>
+    </li>
+    <li class="menu-item">
+      <a href="/about">About</a>
+    </li>
+    <li class="menu-item">
+      <StyledLinkButton
+        href={coffeeLink.url}
+        label={coffeeLink.label}
+        iconName={coffeeLink.icon}
+        title={coffeeLink.label}
+      />
+    </li>
+  </Navigation>
+</header>
+
+<style lang="scss" is:global>
+  @use '../assets/scss/base/outline' as *;
+
+  header {
+    .type-icon a {
+      display: block;
+
+      [data-icon] {
+        margin-top: -4px;
+        width: 30px;
+        height: auto;
+
+        path {
+          fill: var(--action-color);
+        }
+      }
+
+      &:hover {
+        [data-icon] path {
+          fill: var(--action-color-state);
+        }
+      }
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+    }
+  }
+</style>

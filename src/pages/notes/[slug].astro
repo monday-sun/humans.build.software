@@ -1,0 +1,156 @@
+---
+import DefaultLayout from '../../layouts/DefaultLayout.astro'
+import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
+import { getCollection, render } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+import { Image } from 'astro:assets' // Keep for author avatar
+
+export async function getStaticPaths() {
+  const notesEntries = await getCollection('notes')
+  const authors = await getCollection('authors')
+
+  const authorMap = Object.fromEntries(authors.map((author) => [author.id, author]))
+
+  return notesEntries.map((entry) => {
+    const author = authorMap[entry.data.author] || null
+    return {
+      params: { slug: entry.slug }, // Use slug from the collection
+      props: { entry, author },
+    }
+  })
+}
+
+interface Props {
+  entry: CollectionEntry<'notes'>
+  author: CollectionEntry<'authors'> | null
+}
+
+const { entry, author } = Astro.props
+const { Content } = await render(entry)
+const { title, pubDate, updatedDate, tags } = entry.data
+
+const formattedPubDate = new Date(pubDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+})
+const formattedUpdatedDate = updatedDate
+  ? new Date(updatedDate).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  : null
+---
+
+<DefaultLayout title={title} description={entry.data.description} url={`/notes/${entry.slug}`}>
+  <div class="container">
+    <div class="mt-12">
+      <Breadcrumbs>
+        <BreadcrumbsItem href="/" label="Home" />
+        <BreadcrumbsItem href="/notes" label="Notes" />
+        <BreadcrumbsItem currentPage={true} label={title} />
+      </Breadcrumbs>
+    </div>
+  </div>
+  <section class="my-12">
+    <div class="container">
+      <h1>{title}</h1>
+      <div class="mt-2 flex flex-wrap gap-2">
+        {
+          tags &&
+            tags.map((tag) => (
+              <span class="rounded-md bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">{tag}</span>
+            ))
+        }
+      </div>
+      <div class="mt-4 text-neutral-700 dark:text-neutral-300">
+        {
+          author ? (
+            <div class="author-info flex items-center gap-3">
+              {author.data.avatar && (
+                <Image
+                  src={author.data.avatar}
+                  alt={`${author.data.name}'s avatar`}
+                  width={40}
+                  height={40}
+                  class="rounded-full"
+                />
+              )}
+              <div>
+                <p>
+                  By{' '}
+                  <a href={`/authors/${author.id}`} class="text-action hover:text-action-state">
+                    {author.data.name}
+                  </a>
+                  {author.data.pronouns && <span class="text-sm opacity-75">({author.data.pronouns})</span>}• Published{' '}
+                  {formattedPubDate}
+                </p>
+                {formattedUpdatedDate && <p>Last updated: {formattedUpdatedDate}</p>}
+              </div>
+            </div>
+          ) : (
+            <p>Published {formattedPubDate}</p> // Simplified for no author case
+          )
+        }
+      </div>
+    </div>
+  </section>
+  <section class="my-12">
+    <div class="prose dark:prose-invert container max-w-3xl">
+      <Content />
+    </div>
+  </section>
+</DefaultLayout>
+
+<!-- Reuse styles from blog post template -->
+<style lang="scss" is:global>
+  .prose {
+    @apply text-lg leading-relaxed;
+
+    h2 {
+      @apply text-2xl font-bold mt-8 mb-4;
+    }
+
+    h3 {
+      @apply text-xl font-bold mt-6 mb-3;
+    }
+
+    p {
+      @apply mb-4;
+    }
+
+    ul,
+    ol {
+      @apply mb-4 pl-6;
+    }
+
+    li {
+      @apply mb-1;
+    }
+
+    blockquote {
+      @apply border-l-4 border-neutral-300 dark:border-neutral-700 pl-4 italic;
+    }
+
+    a {
+      color: var(--action-color);
+      text-decoration: underline;
+
+      &:hover,
+      &:focus {
+        color: var(--action-color-state);
+        text-decoration: none;
+      }
+    }
+
+    pre {
+      @apply p-4 rounded-lg overflow-x-auto;
+    }
+
+    img {
+      @apply max-w-full rounded-lg my-6;
+    }
+  }
+</style>
+
