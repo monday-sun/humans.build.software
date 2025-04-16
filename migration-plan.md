@@ -158,6 +158,7 @@
 - **Goal:** Transform the default homepage layout into a warmer, more personal "soft invitation."
 - **Implementation Time:** 1-2 days
 - **Tasks:**
+
   1.  ✅ Analyze the structure of `src/pages/index.astro` and the widgets it imports (likely from `src/components/widgets/`). Identify the default Hero component. (0.5 days)
   2.  ✅ Modify or replace the Hero component's content with your whimsical welcome message and tagline ("Exploring software..."). (0.5 days)
   3.  ❌ Create a simple Astro component for the "Today's Mood" block. Initially, populate it with static content (emoji/quote). Place this component prominently on the homepage. (0.5 days)
@@ -168,6 +169,8 @@
         - Added a "What to Expect" section with blog description
         - Added a "Recent Posts" section with latest blog entries in a card layout
         - Styled cards with hover effects and clean typography
+        - ✅ **Update ([Date]):** Refactored recent posts section to use a shared `CardNoImage` component. Updated title to "Recent Activity" and configured to display the latest 3 items combined from both 'blog' and 'notes' collections. Fixed URL generation to handle `id` for blog and `slug` for notes.
+
 - **Learning Outcome:** Understand how to modify Astro page structure and compose pages using Astro components/widgets. Practice adapting existing components and creating simple new ones.
 
 ## Milestone 4: Blog Enhancements and Additional Features (Simplified Plan)
@@ -195,11 +198,12 @@
 
   3. **Create Notes Section** (1-1.5 days)
 
-     - Create a separate content collection for "Notes" (shorter-form content)
-     - Define schema for Notes in the content config
-     - Design a Notes index page at `/notes`
+     - ✅ Create a separate content collection for "Notes" (shorter-form content)
+     - ✅ Define schema for Notes in the content config
+     - ✅ Design a Notes index page at `/notes` (using `CardNoImage` component)
      - Develop a streamlined template for individual note posts
      - Add to site navigation
+     - ✅ **Note:** Integrated latest notes alongside blog posts into the "Recent Activity" section on the homepage.
 
   4. **Portfolio Page Placeholder** (0.5 days)
 
