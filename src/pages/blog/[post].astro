@@ -113,6 +113,25 @@ const formattedUpdatedDate = updatedDate
       </div>
     </div>
   </section>
+
+  {/* Add Cover Image Section */}
+  {
+    entry.data.image && (
+      <section class="my-6">
+        <div class="container max-w-3xl">
+          <Image
+            src={entry.data.image.src}
+            alt={entry.data.image.alt}
+            width={1024} // Example width, adjust as needed
+            height={576} // Example height, adjust aspect ratio
+            format="webp" // Example format, adjust as needed
+            class="w-full h-auto rounded-lg shadow-md"
+          />
+        </div>
+      </section>
+    )
+  }
+
   <section class="my-12">
     <div class="prose dark:prose-invert container max-w-3xl">
       <Content />

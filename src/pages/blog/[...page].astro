@@ -40,6 +40,8 @@ const { page } = Astro.props
               <Card
                 url={'/blog/' + post.id}
                 title={post.data.title}
+                img={post.data.image?.src}
+                alt={post.data.image?.alt}
                 footer={`${new Date(post.data.pubDate).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
