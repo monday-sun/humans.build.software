@@ -1,6 +1,6 @@
 ---
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
-import { Card } from 'accessible-astro-components'
+import CardNoImage from '../../components/CardNoImage.astro'
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 
@@ -26,7 +26,7 @@ const description = 'Shorter-form thoughts, links, and weekly updates.'
         {
           sortedNotes.map((note) => (
             <li>
-              <Card
+              <CardNoImage
                 url={`/notes/${note.slug}`}
                 title={note.data.title}
                 footer={`${new Date(note.data.pubDate).toLocaleDateString('en-US', {
@@ -36,7 +36,7 @@ const description = 'Shorter-form thoughts, links, and weekly updates.'
                 })}`}
               >
                 {note.data.description}
-              </Card>
+              </CardNoImage>
             </li>
           ))
         }
@@ -62,4 +62,3 @@ const description = 'Shorter-form thoughts, links, and weekly updates.'
     }
   }
 </style>
-

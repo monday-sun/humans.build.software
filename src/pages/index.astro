@@ -1,16 +1,26 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import Hero from '../components/Hero.astro'
+import CardNoImage from '../components/CardNoImage.astro'
 import { getCollection } from 'astro:content'
 
-// Get recent blog posts
-const allBlogPosts = await getCollection('blog', ({ data }) => {
-  return !data.draft
-})
+// Fetch both blog posts and notes
+const blogPosts = await getCollection('blog', ({ data }) => !data.draft)
+const notes = await getCollection('notes', ({ data }) => !data.draft) // Assuming notes might have drafts too
 
-const recentPosts = allBlogPosts
-  .sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf())
-  .slice(0, 4)
+// Combine, sort, and slice
+const allContent = [...blogPosts, ...notes].sort(
+  (a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+)
+
+const recentContent = allContent.slice(0, 3)
+
+// Helper function to determine URL based on collection
+const getUrl = (item) => {
+  // Use item.id for 'blog' collection, item.slug for others (like 'notes')
+  const slugOrId = item.collection === 'blog' ? item.id : item.slug
+  return `/${item.collection}/${slugOrId}`
+}
 ---
 
 <DefaultLayout title="Home">
@@ -32,81 +42,37 @@ const recentPosts = allBlogPosts
 
   <section class="my-24">
     <div class="container">
-      <h2 class="mb-16 text-4xl">Recent Posts</h2>
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+      <h2 class="mb-16 text-4xl">Recent Activity</h2>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {
-          recentPosts.map((post) => (
-            <div class="card">
-              <div class="card-body">
-                <h3 class="text-2xl font-medium">
-                  <a href={`/blog/${post.id}`} class="hover:text-primary-600 dark:hover:text-primary-400">
-                    {post.data.title}
-                  </a>
-                </h3>
-                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                  {new Date(post.data.pubDate).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </p>
-                <p class="mt-4">{post.data.description}</p>
-                <div class="mt-6">
-                  <a href={`/blog/${post.id}`} class="link-button">
-                    Read more
-                  </a>
-                </div>
-              </div>
-            </div>
+          recentContent.map((item) => (
+            <CardNoImage
+              title={item.data.title}
+              url={getUrl(item)}
+              footer={`${new Date(item.data.pubDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}`}
+            >
+              {item.data.description}
+            </CardNoImage>
           ))
         }
       </div>
       <div class="mt-12 text-center">
         <a href="/blog" class="button has-icon"> View all posts </a>
+        <a href="/notes" class="button has-icon ml-4"> View all notes </a>
       </div>
     </div>
   </section>
 </DefaultLayout>
 
 <style>
-  .card {
-    transition:
-      transform 0.2s ease-in-out,
-      box-shadow 0.2s ease-in-out;
-    box-shadow:
-      0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -2px rgba(0, 0, 0, 0.1);
-    border-radius: 0.5rem;
-    background-color: var(--neutral-100);
-    overflow: hidden;
-  }
-
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow:
-      0 10px 15px -3px rgba(0, 0, 0, 0.1),
-      0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  }
-
-  .card-body {
-    padding: 1.5rem;
-  }
-
-  .link-button {
-    display: inline-flex;
-    align-items: center;
-    transition: color 0.2s ease-in-out;
-    color: var(--primary-500);
-    font-weight: 500;
-    text-decoration: none;
-  }
-
-  .link-button:hover {
-    color: var(--primary-700);
-    text-decoration: underline;
-  }
-
   :global(.darkmode) .card {
-    background-color: var(--neutral-900);
+    /* This style might still be relevant if CardNoImage uses .card class and needs dark mode adjustments */
+    /* Review CardNoImage styles to confirm if this is needed */
+    /* Assuming CardNoImage handles its own dark mode theming, remove this */
+    /* background-color: var(--neutral-900); <-- Remove this */
   }
 </style>
