@@ -8,8 +8,6 @@ import type { CollectionEntry } from 'astro:content'
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = await getCollection('blog')
 
-  console.log(`Found ${posts.length} blog posts`)
-
   // Sort posts by publication date in descending order
   const sortedPosts = posts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf())
 

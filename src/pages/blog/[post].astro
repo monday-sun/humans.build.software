@@ -12,16 +12,8 @@ export async function getStaticPaths() {
   // Create an author lookup map for easy reference
   const authorMap = Object.fromEntries(authors.map((author) => [author.id, author]))
 
-  console.log(
-    'Available blog entries:',
-    blogEntries.map((entry) => ({
-      id: entry.id,
-      title: entry.data.title,
-    })),
-  )
 
   return blogEntries.map((entry) => {
-    console.log(`Generating path for ${entry.id}`)
     const author = authorMap[entry.data.author] || null
     return {
       params: { post: entry.id },
@@ -36,13 +28,6 @@ interface Props {
 }
 
 const { entry, author } = Astro.props
-
-// --- DEBUGGING --- Add console log to inspect entry data
-console.log(`--- Data for post ID: ${entry.id} ---`);
-console.log(entry.data);
-console.log(`--------------------------------------`);
-// --- END DEBUGGING ---
-
 const { Content } = await render(entry)
 const { title, pubDate, updatedDate, tags } = entry.data
 
