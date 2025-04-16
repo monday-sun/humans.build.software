@@ -1,18 +1,18 @@
 ---
 title: "Monday's Weekly Notes: April 14, 2025"
-description: ""Fast and Furious""
-author: "monday-romelfanger"
-pubDate: "2025-04-14T00:00:00Z"
-updatedDate: "2025-04-14T16:00:00.000Z"
+description: 'Fast and Furious'
+author: 'monday-romelfanger'
+pubDate: '2025-04-14T00:00:00Z'
+updatedDate: '2025-04-14T16:00:00.000Z'
 tags:
-  - "weekly-notes"
-  - "weekly-notes"
-  - "llms"
-  - "development-process"
-  - "cursor"
-  - "build-in-public"
+  - 'weekly-notes'
+  - 'llms'
+  - 'development-process'
+  - 'cursor'
+  - 'build-in-public'
 draft: false
 ---
+
 _Weekly Notes are here to inspire others experimenting right now, give me a framework for reflection, and open up discussion around these workflows._
 
 ## Highlights
@@ -27,16 +27,19 @@ _Weekly Notes are here to inspire others experimenting right now, give me a fram
 ## In-Progress / Work Notes
 
 - Built and integrated Quilt's actor system:
+
   - The actor model was suggested by an LLM but made real when I connected it to how I already think — code as cooperating systems.
   - Formalizing this helped break the work into intuitive, modular pieces.
 
 - Connected key components:
+
   - Discovery actor ↔ scanner + material registry
   - Cutting actor ↔ persistence backend
   - SQLite integrated for early persistence
   - Laid groundwork for swatching infrastructure
 
 - Cursor code review caught real issues:
+
   - Missing error reporting if Cut persistence failed
   - Architectural gaps in dealing with backpressure
 
@@ -77,7 +80,6 @@ These are my current Cursor rules. I can feed it commands to facilitate a largel
   **Cons:** Claude is not very good at sticking to these rules anyway, and it's less fluid and 'natural' feeling.
   **Source:** [reddit post](https://www.reddit.com/r/cursor/comments/1jqvqjx/thanks_to_the_memory_system_post_productivity/)
 
-
 - 📄 [`memory_bank.mdc`](/assets/files/2025-04-14/memory_bank.mdc)  
   This defines how Cursor treats memory. It assumes total amnesia between sessions and reads the memory bank files on every task. The structure is layered — project briefs, system patterns, current focus — and acts as the persistent state for the project.  
   Cursor reads from this when initializing, and I can trigger updates with `update memory bank`.  
@@ -96,22 +98,26 @@ These are my current Cursor rules. I can feed it commands to facilitate a largel
 **Overall Use Case:**  
 These rules make Cursor act like a junior dev or co-pilot with strong instincts and a short memory. I drive the flow by giving high-level commands, and it uses the rule set to respond consistently — whether I'm asking for a review, a next step, or a rewrite.
 
-**Biggest Wins:**  
+**Biggest Wins:**
+
 - I don't need to remember what to ask — I just say what I need (`code review`, `plan`, `test`, etc.) and Cursor knows what to do.
 - The structure helps me scale — I can pause work, come back, and pick up from where the memory left off.
 - It feels less like prompting, more like pairing with a teammate.
 
-**Biggest Gaps:**  
+**Biggest Gaps:**
+
 - Missing integration with other tools
 - Not good for team environments. Maybe memory-bank could be git ignored and unique to the project/individual? Is it necessary with otherwise good documentation?
 
 ---
 
 **Overall Pros:**
+
 - They reduce cognitive load and bring structure to async LLM dev work.
 - They're a long-term bet on trustable rituals — I can feel the system getting sharper.
 
 **Overall Cons:**
+
 - Still not integrated into GitHub or fully LLM-aware — lots of manual context syncing.
 - Too rigid in places (memory bank) and too reliant on me remembering to invoke them.
 - They need tooling, or at least automation hooks, to scale or share effectively.
@@ -121,14 +127,17 @@ These rules make Cursor act like a junior dev or co-pilot with strong instincts 
 ## Links & Publishing
 
 - 📝 Blog posts:
+
   - [What the heck am I supposed to be doing?](https://humans.build.software/posts/what-the-heck-am-I-supposed-to-be-doing/)
   - [Transcript: Vibe Conding a Crystal Ball](https://humans.build.software/posts/z-crystal-ball/)
 
 - 🌐 Site migration:
+
   - Moved blog to [humans.build.software](https://humans.build.software)
   - Redirect from GitHub Pages still pending
 
 - 🎓 Teaching idea emerging:
+
   - Thinking about running a class on LLM workflows — from philosophy to rituals
 
 - 🔍 Exploring:
@@ -139,7 +148,7 @@ These rules make Cursor act like a junior dev or co-pilot with strong instincts 
 
 ## Life & Grounding
 
-- Playing *Spiritfarer*. It's steady, gentle, and hitting the right rhythm.
+- Playing _Spiritfarer_. It's steady, gentle, and hitting the right rhythm.
 - Mid-day Monday is a lovely time for grocery shopping. It's nice to feel free of the corporate schedule.
 
 ---
@@ -157,7 +166,7 @@ These rules make Cursor act like a junior dev or co-pilot with strong instincts 
 - First weekly notes!!
 - For non-cursor LLM chats if you're having markdown rendering problems:
   > "Please produce a Markdown document that is entirely wrapped in a single code block with outer backticks (using four backticks for the outer fence) so that inner formatting is preserved."
-- Join me on [VibeColab Discord](https://discord.gg/TXhqgKkr) 
+- Join me on [VibeColab Discord](https://discord.gg/TXhqgKkr)
 
 ---
 
@@ -166,9 +175,10 @@ These rules make Cursor act like a junior dev or co-pilot with strong instincts 
 Curious how others are shaping their LLM workflows. Are you trying something similar with Cursor or memory-based systems?
 
 This week I'm especially thinking about:
+
 - How to make memory banks more team-friendly
 - Integrating LLM review flows with GitHub
-- Finding a better bridge between GitHub and Cursor-based reviews  
+- Finding a better bridge between GitHub and Cursor-based reviews
   - I tried [`ai-code-review-action`](https://github.com/marketplace/actions/ai-code-review-action), but it overwhelmed me with low-priority comments that I had to manually feed back into Cursor. It broke the rhythm more than it helped.
 
 If you're experimenting in this space, I'd love to hear what's working (or not).

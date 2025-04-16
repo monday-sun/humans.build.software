@@ -60,5 +60,26 @@ const blog = defineCollection({
   }),
 })
 
+const notes = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    author: z.string(),
+    // Use string transformation first to handle various date formats
+    pubDate: z
+      .string()
+      .transform((str) => new Date(str))
+      .pipe(z.date()),
+    updatedDate: z
+      .string()
+      .transform((str) => new Date(str))
+      .pipe(z.date())
+      .optional(),
+    tags: z.array(z.string()).optional(),
+    // No 'image' field for notes
+    draft: z.boolean().optional().default(false),
+  }),
+})
+
 // 4. Export a single `collections` object to register you collection(s)
-export const collections = { projects, blog, authors }
+export const collections = { projects, blog, authors, notes }

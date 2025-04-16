@@ -1,0 +1,65 @@
+---
+import DefaultLayout from '../../layouts/DefaultLayout.astro'
+import { Card } from 'accessible-astro-components'
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+
+const notes = await getCollection('notes')
+
+// Sort notes by publication date in descending order
+const sortedNotes = notes.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf())
+
+const title = 'Notes'
+const description = 'Shorter-form thoughts, links, and weekly updates.'
+---
+
+<DefaultLayout {title} {description}>
+  <section class="my-12">
+    <div class="space-content container">
+      <h1>{title}</h1>
+      <p class="text-2xl">{description}</p>
+    </div>
+  </section>
+  <section class="my-12">
+    <div class="container">
+      <ul class="my-3">
+        {
+          sortedNotes.map((note) => (
+            <li>
+              <Card
+                url={`/notes/${note.slug}`}
+                title={note.data.title}
+                footer={`${new Date(note.data.pubDate).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}`}
+              >
+                {note.data.description}
+              </Card>
+            </li>
+          ))
+        }
+      </ul>
+      <!-- Pagination removed for simplicity -->
+    </div>
+  </section>
+</DefaultLayout>
+
+<style lang="scss">
+  ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 4rem;
+
+    @media (min-width: 550px) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 2rem;
+    }
+
+    @media (min-width: 950px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
+
