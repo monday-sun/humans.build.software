@@ -7,8 +7,10 @@ updatedDate: '2025-04-05T22:46:49.000Z'
 tags:
   - 'development-process'
   - 'llms'
-  - 'development-process'
   - 'meta'
+image:
+  src: /assets/img/what-the-heck-am-i-supposed-to-be-doing.png
+  alt: 'A cozy, sunlit living room with a plush armchair, an open book, and a warm throw blanket. A steaming mug sits on a nearby table beside a closed laptop and a small plant. A corkboard with notes and sketches hangs on the wall. A cat lounges on a rug next to a green yarn ball, surrounded by books and soft light from a curtained window.'
 draft: false
 ---
 

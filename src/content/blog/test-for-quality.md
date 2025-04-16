@@ -6,7 +6,6 @@ pubDate: '2024-05-04T00:00:00Z'
 updatedDate: '2024-05-04T22:46:49.000Z'
 tags:
   - 'quality'
-  - 'quality'
   - 'development-process'
   - 'quality-automation'
   - 'testing'
