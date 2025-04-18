@@ -60,7 +60,7 @@ import { siteConfig } from '../data/site.js'
     const checkMenuSize = () => {
       const mainNavWidth = mainNav.getBoundingClientRect().width
       const desktopMenuWidth = document.querySelector('.desktop-menu').getBoundingClientRect().width
-      const logoWidthBuffer = 300
+      const logoWidthBuffer = 360
       const totalMenuWidth = Math.round(desktopMenuWidth) + logoWidthBuffer
 
       if (totalMenuWidth >= mainNavWidth) {
@@ -316,11 +316,17 @@ import { siteConfig } from '../data/site.js'
         }
       }
 
-      a,
-      button {
+      // Target only direct links within list items, EXCLUDING the styled button
+      > ul > li > a:not(.styled-link-button) {
         display: block;
         padding: 0.5rem 0;
         width: 100%;
+      }
+
+      button {
+        // Add specific button styles here if needed for mobile menu buttons
+        // that aren't the StyledLinkButton (e.g., dropdown toggles if styled differently).
+        // For now, we assume the general button styles are sufficient or handled elsewhere.
       }
     }
 
