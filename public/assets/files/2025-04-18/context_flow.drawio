@@ -1,0 +1,53 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36" version="26.2.13">
+  <diagram name="LLM_Context" id="llm-context-diagram-1">
+    <mxGraphModel dx="642" dy="665" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="Latent Knowledge (Pretraining)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F28C7B;strokeColor=#000000;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="250" y="340" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="&lt;span&gt;Initial Prompt (Setup &amp;amp; Instructions)&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C2B6A3;strokeColor=#000000;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="90" y="140" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="Conversational Context (Message History)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66D0A2;strokeColor=#000000;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="360" y="140" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="Context Window (Working Memory)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5D37A;strokeColor=#000000;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="190" y="240" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="Model Output" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B72D1D;strokeColor=#000000;fontSize=14;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="270" y="440" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="10" style="endArrow=block;html=1;strokeColor=#000000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.663;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="6" target="4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="560" y="210" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="560" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="11" style="endArrow=block;html=1;strokeColor=#000000;" parent="1" source="4" target="5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="12" style="endArrow=block;html=1;strokeColor=#000000;" parent="1" target="6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="400" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lqg3zFfNQ_JBkMfH4OmY-14" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="339.5" y="300" as="sourcePoint" />
+            <mxPoint x="339.5" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lqg3zFfNQ_JBkMfH4OmY-15" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="256" y="200" as="sourcePoint" />
+            <mxPoint x="310" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
