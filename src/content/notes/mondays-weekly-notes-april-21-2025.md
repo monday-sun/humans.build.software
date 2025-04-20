@@ -34,20 +34,20 @@ _Weekly Notes are here to inspire others experimenting right now, give me a fram
 - **Detox and Restructuring**
 
   - After doing a lot, very quickly early in the week I noticed I was riding the 'oh, look how much I can do' high a little too hard
-  - Took an LLM detox day on Wednesday, cross-stitched, hung out, just got away from the computer
+  - Took an LLM detox day on Wednesday, cross-stitched, hung out, got away from the computer
   - I decided to try coming up with a schedule that sets priority themes (e.g. Creative Work, Recharge, Social) for morning/afternoon/evening time blocks to help find more balance and give a reason to not deep dive for too long.
 
 - **Time Block Focus (iOS App)**
 
-  - Trying a little iphone prototype, built around the new week structure. Each day is broken into morning / afternoon / evening focus areas. Right now iw just puts whatever my current theme is on the app display
+  - Trying a little iphone prototype, built around the new week structure. Each day is broken into morning / afternoon / evening focus areas. Right now it puts whatever my current theme is on the app display
   - If I find it useful this week then might add Widget + Live Activity
-  - Swift packages handled in Cursor; Xcode just for UI wiring and device deployment.
+  - Swift packages handled in Cursor; Xcode for UI wiring and device deployment.
   - Still annoying to wrangle the Apple dev stack, but I’m getting better at working around it.
 
 - **Quilt**
 
   - Didn’t touch code this week — paused while my head was in other systems.
-  - Spent time this week messing with the memory back workflow, so it'll be interesting to pcik this back up next week.
+  - Spent time this week messing with the memory back workflow, so it'll be interesting to pick this back up next week.
 
 ---
 
@@ -55,16 +55,16 @@ _Weekly Notes are here to inspire others experimenting right now, give me a fram
 
 - Even small rituals shift how I approach the week. The cadence system is helping, even if I’m still adapting to it.
 - The “detox day” in the middle of the week (Wednesday) was key — space to not push anything forward.
-- Energy levels are currently unpredictable -- stress and allergies are dragging me down. Having thematic focus will hopefull help me find more balance.
-- LLMs don't work when I'm being dsitractable and not clearly explaining myself.
+- Energy levels are currently unpredictable -- stress and allergies are dragging me down. Having thematic focus will hopefully help me find more balance.
+- LLMs don't work when I'm being distractable and not clearly explaining myself.
 
 ---
 
 ## Cursor Rules
 
 - [collaboration.mdc](assets/files/2025-04-21/collaboration.mdc)
-  - Trying a variant of this in my various workspaces with week as a replacement for memeory bank.
-  - The agents really struggle to find context unless very explicitly told to read something, and even then they'll avoid it. I wonder if this is related to the way LLMs won't admit they don't know/aren't sure about something. Since it's based on human text, we don't really ever demonstrate seeking knowledge, we just have it. Kind of the premise of Quilt. How cna the llm just have the knowledge it needs?
+  - Trying a variant of this in my various workspaces with week as a replacement for memory bank.
+  - The agents struggle to find context unless very explicitly told to read something, and even then they'll avoid it. I wonder if this is related to the way LLMs won't admit they don't know/aren't sure about something. Since it's based on human text, we don't ever demonstrate seeking knowledge, we have it. Kind of the premise of Quilt. How can the llm have the knowledge it needs?
 
 ---
 
@@ -72,7 +72,7 @@ _Weekly Notes are here to inspire others experimenting right now, give me a fram
 
 - ✅ New blog post live: [How LLMs 'Know' Stuff](https://humans.build.software/blog/how-llms-know-stuff)
 - I have a few more ideas to do soon:
-  - How small changes in context can have outside impacts
+  - How small changes in context can have outsized impacts
   - A Context building workflow
 
 ---
@@ -92,6 +92,6 @@ _Weekly Notes are here to inspire others experimenting right now, give me a fram
 
 ## 💬 Open Threads
 
-- What tools actually support LLM + GitHub workflows without overwhelming the human?
+- What tools support LLM + GitHub workflows without overwhelming the human?
 - How do I make weekly cadence stick without turning it into yet another rule I resist?
 - How can we reduce friction on providing LLMs with context?
