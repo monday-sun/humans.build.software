@@ -2,8 +2,8 @@
 title: "How LLMs 'Know' Stuff"
 description: '(and why they forget)'
 author: 'monday-romelfanger'
-pubDate: '2025-04-28T00:00:00Z'
-updatedDate: '2025-04-28T00:00:00Z'
+pubDate: '2025-04-18T00:00:00Z'
+updatedDate: '2025-04-18T00:00:00Z'
 tags:
   - 'llm'
   - 'ai'

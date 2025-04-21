@@ -1,0 +1,141 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Human-Centered Documentation Rules
+
+## Core Philosophy
+
+We prioritize human-readable, example-driven documentation by leveraging:
+
+- **Swift Playground Books** for interactive, step-by-step tutorials. (not implemented yet, use standard XCTests)
+- **CucumberSwift** for executable behavior-driven specs (`.feature` files). (not implemented yet)
+
+All documentation is written in Markdown under `docs/src/` (and tutorials in `docs/playgrounds/`), ensuring a single source of truth.
+
+---
+
+## **MUST READ FIRST**: Initial Context Acquisition
+
+**At the absolute start of processing any new user request or beginning a new task/milestone, you MUST read the following core documentation files in order. This step is mandatory and precedes any planning or analysis.** This ensures you operate with the fundamental project context.
+
+**Mandatory Initial Reading List:**
+1.  `docs/src/SUMMARY.md` (Understand Documentation Structure)
+2.  `docs/src/README.md` (Project Overview & Principles)
+3.  `docs/src/development/guide.md` (Development Standards)
+4.  `docs/src/development/testing_linting.md` (Quality & Linting)
+5.  `.cursor/rules/current_implementation_plan.mdc` (Current workstream)
+
+**Do not proceed to planning, analysis, or execution until this initial reading is complete.**
+
+---
+
+## Documentation Structure
+
+```
+docs/
+├── src/
+│   ├── SUMMARY.md               # Table of contents for mdBook
+│   ├── README.md                # Project overview & principles
+│   ├── features/                # Cucumber `.feature` specs
+│   │   └── *.feature
+│   ├── tutorials/               # Markdown guides
+│   │   └── *.md
+│   ├── reference/               # API reference & core docs
+│   └── development/
+│       ├── guide.md             # Development standards
+│       ├── testing_linting.md   # Quality & lint rules
+│       └── implementation-plans/
+│           └── *.md             # Drafted implementation plans
+├── playgrounds/
+│   └── TutorialName.playgroundbook  # Swift Playground Books
+└── examples/
+    └── blocks.sample.json
+```
+
+---
+
+## Documentation Workflow
+
+For each new task:
+
+1. **Read**  
+   - `docs/src/SUMMARY.md`  
+   - `docs/src/README.md`  
+   - `docs/src/development/guide.md`  
+   - Task-specific `.feature` in `docs/src/features/`  
+   - Relevant Playground Book in `docs/playgrounds/`
+
+2. **Experiment**  
+   - Run the Playground Book to explore usage.  
+   - Execute Cucumber to validate current specs.
+
+3. **Analyze**  
+   - Compare behavior in Playground and spec against implementation.  
+   - Identify gaps or outdated content.
+
+4. **Plan**  
+   - Draft an implementation plan in  
+     `docs/src/development/implementation-plans/<task-name>.md`
+
+5. **Document**  
+   - Update or add Markdown in `docs/src/`.  
+   - Update or add `.feature` specs in `docs/src/features/`.  
+   - Update or create Playground Books in `docs/playgrounds/`.  
+   - Amend `docs/src/SUMMARY.md` if structure changes.
+
+---
+
+## Standard Workflow (After Initial Read)
+
+Once the initial context is established by reading the mandatory files:
+
+1.  **Read Task-Specific Docs (If Applicable):**
+    *   Relevant `docs/src/features/*.feature`
+    *   Relevant `docs/playgrounds/*.playgroundbook`
+    *   Existing `docs/src/development/implementation-plans/<task-name>.md`
+2.  **Experiment:** ... (keep existing steps) ...
+3.  **Analyze:** ... (keep existing steps) ...
+4.  **Plan (PLAN Mode):** ... (keep existing steps, ensure it references the plan file) ...
+5.  **Document & Implement (ACT Mode):** ... (keep existing steps) ...
+
+---
+
+## Update Triggers
+
+- **`update docs`** — Review recent implementations and update the documentation to match  
+- **`new plan`** — Scaffold a new implementation plan template  
+
+---
+
+## File Reading Priority
+
+1. `docs/src/SUMMARY.md`  
+2. `docs/src/README.md`  
+3. `docs/src/development/guide.md`  
+4. `docs/src/development/testing_linting.md`  
+5. `docs/src/features/*.feature`  
+6. `docs/playgrounds/*.playgroundbook`  
+7. `docs/src/reference/`
+
+---
+
+## Making Documentation Updates
+
+1. Identify the Markdown, `.feature`, or Playground file to update.  
+2. Note why the update is needed.  
+3. Show proposed changes in Markdown or Playground manifest.  
+4. Update `docs/src/SUMMARY.md` if pages are added/removed.  
+5. Commit changes after review.
+
+---
+
+## Knowledge Tracking
+
+1. Create a dedicated branch for docs updates.  
+2. Edit or add files in `docs/src/` and `docs/playgrounds/`.  
+3. Run Cucumber and Playground to verify.  
+4. Open a PR with updated docs and specs.
+
+---
