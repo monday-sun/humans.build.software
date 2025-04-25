@@ -7,6 +7,7 @@ updatedDate: '2025-04-25T00:00:00Z'
 tags:
   - 'llm'
   - 'ai'
+  - 'reflection'
 image:
   src: /assets/img/i-thought-youd-be-more-skeptical.png
   alt: 'An AI-generated image resembling a close-up of rippling knitted fabric. The fabric appears mint green with flowing streaks of coral and golden tones, creating an organic, slightly surreal texture.'
