@@ -66,7 +66,13 @@ const notes = defineCollection({
       .pipe(z.date())
       .optional(),
     tags: z.array(z.string()).optional(),
-    // No 'image' field for notes
+    // Add catImage field for notes
+    catImage: z
+      .object({
+        src: z.string(),
+        alt: z.string(),
+      })
+      .optional(),
     draft: z.boolean().optional().default(false),
   }),
 })

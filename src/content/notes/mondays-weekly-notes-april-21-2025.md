@@ -11,6 +11,9 @@ tags:
   - 'cursor'
   - 'build-in-public'
 draft: false
+catImage:
+  src: '/assets/files/2025-04-21/cat-pile.jpeg'
+  alt: 'Three cats snuggled together on a teal bed in a sunbeam. On the left, a large orange tabby cat is lying with eyes closed, partially curled around a calico cat in the middle who is resting calmly with eyes half open. On the right, a smaller black-and-white cat is curled up tightly, sleeping. Behind them is a white pillow with a tropical leaf and flower pattern. The scene is peaceful and bathed in warm sunlight.'
 ---
 
 _Weekly Notes are here to inspire others experimenting right now, give me a framework for reflection, and open up discussion around these workflows._
@@ -42,19 +45,19 @@ _Weekly Notes are here to inspire others experimenting right now, give me a fram
   - Trying a little iphone prototype, built around the new week structure. Each day is broken into morning / afternoon / evening focus areas. Right now it puts whatever my current theme is on the app display
   - If I find it useful this week then might add Widget + Live Activity
   - Swift packages handled in Cursor; Xcode for UI wiring and device deployment.
-  - Still annoying to wrangle the Apple dev stack, but I’m getting better at working around it.
+  - Still annoying to wrangle the Apple dev stack, but I'm getting better at working around it.
 
 - **Quilt**
 
-  - Didn’t touch code this week — paused while my head was in other systems.
+  - Didn't touch code this week — paused while my head was in other systems.
   - Spent time this week messing with the memory back workflow, so it'll be interesting to pick this back up next week.
 
 ---
 
 ## Thinking & Reflection
 
-- Even small rituals shift how I approach the week. The cadence system is helping, even if I’m still adapting to it.
-- The “detox day” in the middle of the week (Wednesday) was key — space to not push anything forward.
+- Even small rituals shift how I approach the week. The cadence system is helping, even if I'm still adapting to it.
+- The "detox day" in the middle of the week (Wednesday) was key — space to not push anything forward.
 - Energy levels are currently unpredictable -- stress and allergies are dragging me down. Having thematic focus will hopefully help me find more balance.
 - LLMs don't work when I'm being distractable and not clearly explaining myself.
 
@@ -81,12 +84,6 @@ _Weekly Notes are here to inspire others experimenting right now, give me a fram
 
 - Sunshine yoga in the morning helps reset my mood.
 - Happy Easter!
-
----
-
-## 🐈 Cat Pic of the Week
-
-## <img src="/assets/files/2025-04-21/cat-pile.jpeg" alt="Three cats snuggled together on a teal bed in a sunbeam. On the left, a large orange tabby cat is lying with eyes closed, partially curled around a calico cat in the middle who is resting calmly with eyes half open. On the right, a smaller black-and-white cat is curled up tightly, sleeping. Behind them is a white pillow with a tropical leaf and flower pattern. The scene is peaceful and bathed in warm sunlight." style="max-width: 400px; height: auto; border-radius: 8px;" />
 
 ---
 

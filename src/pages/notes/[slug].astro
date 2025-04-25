@@ -43,7 +43,12 @@ const formattedUpdatedDate = updatedDate
   : null
 ---
 
-<DefaultLayout title={title} description={entry.data.description} url={`/notes/${entry.slug}`}>
+<DefaultLayout
+  title={title}
+  description={entry.data.description}
+  url={`/notes/${entry.slug}`}
+  image={entry.data.catImage?.src}
+>
   <div class="container">
     <div class="mt-12">
       <Breadcrumbs>
@@ -97,10 +102,28 @@ const formattedUpdatedDate = updatedDate
     </div>
   </section>
   <section class="my-12">
-    <div class="prose dark:prose-invert container max-w-3xl">
+    <div class="container prose max-w-3xl dark:prose-invert">
       <Content />
     </div>
   </section>
+
+  {
+    entry.data.catImage && (
+      <section class="my-12">
+        <div class="mx-auto max-w-sm">
+          <Image
+            src={entry.data.catImage.src}
+            alt={entry.data.catImage.alt}
+            width={800}
+            height={450}
+            format="webp"
+            class="h-auto w-full rounded-lg shadow-md"
+          />
+          <p class="mt-2 text-center text-sm italic text-neutral-600 dark:text-neutral-400">Cat Pic of the Week</p>
+        </div>
+      </section>
+    )
+  }
 </DefaultLayout>
 
 <!-- Reuse styles from blog post template -->
@@ -153,4 +176,3 @@ const formattedUpdatedDate = updatedDate
     }
   }
 </style>
-
