@@ -62,6 +62,23 @@ const formattedUpdatedDate = updatedDate
       </Breadcrumbs>
     </div>
   </div>
+
+  {/* Add Cover Image Section */}
+  {
+    entry.data.image && (
+      <section class="my-6">
+        <Image
+          src={entry.data.image.src}
+          alt={entry.data.image.alt}
+          width={1024} // Example width, adjust as needed
+          height={576} // Example height, adjust aspect ratio
+          format="webp" // Example format, adjust as needed
+          class="w-full h-64 object-cover"
+        />
+      </section>
+    )
+  }
+
   <section class="my-12">
     <div class="container">
       <h1>{title}</h1>
@@ -105,24 +122,6 @@ const formattedUpdatedDate = updatedDate
       </div>
     </div>
   </section>
-
-  {/* Add Cover Image Section */}
-  {
-    entry.data.image && (
-      <section class="my-6">
-        <div class="container max-w-3xl">
-          <Image
-            src={entry.data.image.src}
-            alt={entry.data.image.alt}
-            width={1024} // Example width, adjust as needed
-            height={576} // Example height, adjust aspect ratio
-            format="webp" // Example format, adjust as needed
-            class="w-full h-auto rounded-lg shadow-md"
-          />
-        </div>
-      </section>
-    )
-  }
 
   <section class="my-12">
     <div class="prose prose-lg dark:prose-invert container max-w-3xl">
