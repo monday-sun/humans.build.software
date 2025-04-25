@@ -11,6 +11,9 @@ tags:
   - 'cursor'
   - 'build-in-public'
 draft: false
+catImage:
+  src: '/assets/files/2025-04-14/cat-pic.jpeg'
+  alt: 'An orange tabby cat sits on a high white ledge near the ceiling, looking down. The background includes a wooden ceiling and a blue wall below.'
 ---
 
 _Weekly Notes are here to inspire others experimenting right now, give me a framework for reflection, and open up discussion around these workflows._
@@ -150,23 +153,6 @@ These rules make Cursor act like a junior dev or co-pilot with strong instincts 
 
 - Playing _Spiritfarer_. It's steady, gentle, and hitting the right rhythm.
 - Mid-day Monday is a lovely time for grocery shopping. It's nice to feel free of the corporate schedule.
-
----
-
-## 🐈 Cat Pic of the Week
-
-<img src="/assets/files/2025-04-14/cat-pic.jpeg" alt="An orange tabby cat sits on a high white ledge near the ceiling, looking down. The background includes a wooden ceiling and a blue wall below." style="max-width: 400px; height: auto; border-radius: 8px;" />
-
----
-
-## Meta & Cadence
-
-- This review is more like a week and a half, but it's all good stuff.
-- Working on a post about overall thoughts on an LLM-based workflow
-- First weekly notes!!
-- For non-cursor LLM chats if you're having markdown rendering problems:
-  > "Please produce a Markdown document that is entirely wrapped in a single code block with outer backticks (using four backticks for the outer fence) so that inner formatting is preserved."
-- Join me on [VibeColab Discord](https://discord.gg/TXhqgKkr)
 
 ---
 
