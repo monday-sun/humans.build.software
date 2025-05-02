@@ -2,18 +2,16 @@
 import Navigation from '../components/Navigation.astro'
 import { SkipLink } from 'accessible-astro-components'
 import { Icon } from 'astro-icon/components'
-import StyledLinkButton from './StyledLinkButton.astro'
 import NewsletterForm from './NewsletterForm.astro'
-import { getCollection } from 'astro:content'
 
-// Get the primary author for coffee link
-const authors = await getCollection('authors')
-const primaryAuthor = authors.find((author) => author.id === 'monday-romelfanger')
-const coffeeLink = primaryAuthor?.data.social?.coffee || {
-  url: 'https://buymeacoffee.com/humans.build.software',
-  label: 'Buy me a Coffee',
-  icon: 'ion:cafe',
-}
+// // Get the primary author for coffee link // Removed block start
+// const authors = await getCollection('authors')
+// const primaryAuthor = authors.find((author) => author.id === 'monday-romelfanger')
+// const coffeeLink = primaryAuthor?.data.social?.coffee || {
+//   url: 'https://buymeacoffee.com/humans.build.software',
+//   label: 'Buy me a Coffee',
+//   icon: 'ion:cafe',
+// } // Removed block end
 ---
 
 <header>

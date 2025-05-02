@@ -1,10 +1,27 @@
 ---
 // Component script can go here if needed in the future
 import { DarkMode } from 'accessible-astro-components'
+import { getCollection } from 'astro:content'
+import StyledLinkButton from './StyledLinkButton.astro'
+
+// Get the primary author for coffee link
+const authors = await getCollection('authors')
+const primaryAuthor = authors.find((author) => author.id === 'monday-romelfanger')
+const coffeeLink = primaryAuthor?.data.social?.coffee || {
+  url: 'https://buymeacoffee.com/humans.build.software',
+  label: 'Buy me a Coffee',
+  icon: 'ion:cafe',
+}
 ---
 
 <div class="engagement-bar">
   <!-- Engagement tools will go here -->
+  <StyledLinkButton
+    href={coffeeLink.url}
+    label={coffeeLink.label}
+    iconName={coffeeLink.icon}
+    title={coffeeLink.label}
+  />
   <DarkMode />
 </div>
 
