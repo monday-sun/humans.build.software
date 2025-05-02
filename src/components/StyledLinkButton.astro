@@ -47,12 +47,12 @@ const { href, label, iconName, title = label } = Astro.props
     &:hover,
     &:focus-visible {
       outline: none; // Remove default outline, rely on border or custom outline from imported styles
-      border-color: var(--action-color-state); // Add focus-visible for accessibility
-      background-color: var(--primary-background);
-      color: var(--action-color-state);
+      border-color: var(--action-color); // Add focus-visible for accessibility
+      background-color: var(--action-color);
+      color: var(--background);
 
       [data-icon] path {
-        fill: var(--action-color-state);
+        fill: var(--background);
       }
     }
 
