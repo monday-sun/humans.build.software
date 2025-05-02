@@ -9,8 +9,8 @@ const authors = await getCollection('authors')
 const primaryAuthor = authors.find((author) => author.id === 'monday-romelfanger')
 const coffeeLink = primaryAuthor?.data.social?.coffee || {
   url: 'https://buymeacoffee.com/humans.build.software',
-  label: 'Buy me a Coffee',
-  icon: 'ion:cafe',
+  label: 'Support',
+  icon: 'ion:gift-outline',
 }
 ---
 
