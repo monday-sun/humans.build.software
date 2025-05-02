@@ -1,4 +1,5 @@
-# Monday’s Weekly Notes  
+# Monday’s Weekly Notes
+
 _Week of [Month Day, Year]_
 
 ---
@@ -44,9 +45,6 @@ _Week of [Month Day, Year]_
 - [Could be a single sentence, photo, or reflection.]
 
 ---
-## 🐈 Cat Pic of the Week
-
----
 
 ## Meta & Cadence
 
@@ -56,4 +54,5 @@ _Week of [Month Day, Year]_
 ---
 
 ## 💬 Open Threads
+
 - [Approprate engagement pulls]

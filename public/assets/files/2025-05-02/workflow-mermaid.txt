@@ -1,0 +1,42 @@
+flowchart TD
+    %% Entry Point
+    Start([Identify Feature Scope])
+
+    %% Feature Attempt Loop
+    subgraph Attempt[Feature Attempt Loop]
+        Try[Try Implementing]
+        Friction[Evaluate friction and code smells]
+        Decide[Decide: Can I implement this feature cleanly, while changing as little existing code as possible?]
+        Throwaway[Throwaway this implementation]
+        Try --> Friction --> Decide -->|Refactor Needed| Throwaway
+    end
+
+    %% Refactor Phase
+    subgraph Refactor[Refactor Phase]
+        TestsRef[Add/Update Tests]
+        RefactorCode[Refactor Code]
+        RefactorPR[Open Refactor PR]
+        RefactorPR -->|Needs Changes| RefactorCode
+        RefactorPR -->|Approved| MergeRef[Merge Refactor → main]
+    end
+
+    %% Feature Phase
+    subgraph Feature[Feature Phase]
+        Impl[Implement Feature]
+        PR2[Open Feature PR]
+        Review[Review & Rebase]
+        Review -->|Ready| MergeFeat[Merge Feature → main]
+        Review -->|New Issues Found| LoopBack[Loop back to Refactor Phase]
+        Impl --> PR2 --> Review
+        TestsRef --> RefactorCode --> RefactorPR
+    end
+
+    %% Connections
+    Start --> Try
+    Decide -->|Proceed As-Is| Impl
+    Decide -->|Too big| Start
+    Review -->|Too Big| Start
+    LoopBack --> TestsRef
+    Throwaway --> TestsRef
+    MergeRef --> Start
+    MergeFeat --> Done([Done])
