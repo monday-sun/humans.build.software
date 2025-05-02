@@ -64,19 +64,26 @@ export async function GET(context) {
         context.site, // Base URL for resolving the item link
       ).toString()
 
-      // Render raw Markdown body to HTML for the content field
-      let htmlContent = parser.render(item.body)
-
+      // --- Apply URL conversion BEFORE rendering Markdown ---
       const siteUrl = context.site.toString() // Get base site URL
-      // Use a replacer function for clarity and correct quoting
-      htmlContent = htmlContent.replace(
-        /(src|href)=(["'])(?!https?:\/\/|\/\/|#)(.+?)\2/gi,
-        (match, attr, quote, relativePath) => {
+      let rawBodyWithAbsoluteUrls = item.body
+
+      // Use a replacer function for clarity and correct quoting on raw body
+      rawBodyWithAbsoluteUrls = rawBodyWithAbsoluteUrls.replace(
+        // Using the refined regex
+        /<(img|a)[^>]*?(src|href)=(["'])(?!https?:\/\/|\/\/|#)(.+?)\3/gi,
+        (match, _tagName, attrName, quote, relativePath) => {
           try {
             // Construct the absolute URL
             const absoluteUrl = new URL(relativePath, siteUrl).toString()
-            // Return the attribute with the original quotes and the new absolute URL
-            return `${attr}=${quote}${absoluteUrl}${quote}`
+            // --- DEBUG LOGGING ---
+            // console.log(`RSS URL Conversion (pre-render): Relative='${relativePath}', Absolute='${absoluteUrl}'`);
+            // --- END DEBUG LOGGING ---
+            // Reconstruct the attribute with the original quotes and the new absolute URL
+            return match.replace(
+              `${attrName}=${quote}${relativePath}${quote}`,
+              `${attrName}=${quote}${absoluteUrl}${quote}`,
+            )
           } catch (e) {
             // In case of invalid URL construction, return the original match
             console.error(`Error creating absolute URL for ${relativePath}:`, e)
@@ -84,6 +91,10 @@ export async function GET(context) {
           }
         },
       )
+      // --- End URL Conversion ---
+
+      // Render the modified Markdown body (with absolute URLs) to HTML
+      let htmlContent = parser.render(rawBodyWithAbsoluteUrls)
 
       // Wrap the HTML content in CDATA to ensure parsers treat it as raw data
       const cdataContent = `<![CDATA[${htmlContent}]]>`
@@ -99,8 +110,8 @@ export async function GET(context) {
         link: itemUrl,
         // Explicitly set guid to the absolute item URL for uniqueness
         guid: itemUrl,
-        // Optional: Add author information if available
-        // customData: `<author>${item.data.author}</author>` // Need to resolve author ID to name if desired
+        // Inject <summary> tag for Buttondown's {{ item.description }}
+        customData: `<summary><![CDATA[${item.data.description} <a href="${itemUrl}">Read more...</a>]]></summary>`,
       }
     }),
     // (optional) inject custom xml
