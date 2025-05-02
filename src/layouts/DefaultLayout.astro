@@ -6,6 +6,9 @@ import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import { siteConfig } from '../data/site.js'
 
+// Read the environment variable (needs PUBLIC_ prefix for client-side access)
+const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID
+
 const {
   title = siteConfig.name,
   description = siteConfig.description,
@@ -29,6 +32,9 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <SiteMeta title={title} description={description.substring(0, 100)} url={url} image={image} author={author} />
+
+    <!-- Conditionally render Umami script if the ID is set -->
+    {umamiWebsiteId && <script defer src="https://cloud.umami.is/script.js" data-website-id={umamiWebsiteId} />}
   </head>
   <body>
     <Header />
