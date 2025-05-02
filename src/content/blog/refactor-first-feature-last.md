@@ -48,9 +48,9 @@ Usually, you do this before working on something, but it's a helpful starting po
 
 I rarely do a feature in one shot. I take at least two passes through here, often 3 or 4. However, part of this process is that each subsequent iteration should be easier than the last. This loop has these stages:
 
-- **Try implementing the feature: **The first iteration should be messy. See what you can do: see what you need.
+- **Try implementing the feature**: The first iteration should be messy. See what you can do: see what you need.
 - **Evaluate friction and code smells**: As you go, you'll get a sense of where the code isn't working and what you need to do for this feature. It might be missing test coverage, interface/abstraction, code duplication, or[ code smells](https://refactoring.guru/refactoring/smells). Keep a list of things you notice. You don't have to completely implement it before moving on; you just need to understand the space.
-- **Decide: **Can I add this feature cleanly while touching as little existing code as possible? This question is my primary evaluation criterion for whether or not I can move on to feature development. I typically prioritize reducing the risk of human error. Human errors are reduced when I can:
+- **Decide**: Can I add this feature cleanly while touching as little existing code as possible? This question is my primary evaluation criterion for whether or not I can move on to feature development. I typically prioritize reducing the risk of human error. Human errors are reduced when I can:
 
   - Cleanly add feature flags to toggle new behaviors on/off
   - Implement new code in focused isolation from the existing system
@@ -79,7 +79,7 @@ By the time you get here, you've probably done most of the hard work. You should
 
 - **Create a new branch**: create the branch from your main branch with your completed refactoring.
 - **Implement your feature**: write new code, add new tests
-- **Open a Pull Request, Code Review, Run Validation: **Get feedback, but remember, it doesn't have to be perfect – you'll fix it next time.
+- **Open a Pull Request, Code Review, Run Validation**: Get feedback, but remember, it doesn't have to be perfect – you'll fix it next time.
   - **Approved**: Merge it; you're done!
   - **New Issues Found**: go back to the refactor loop. You could keep this branch for rebasing or cherry picking from later.
   - **Too Big**: Getting here and deciding your PR is too big is still possible. A big PR will be hard to review. Go back to the beginning and evaluate your feature scope.
@@ -108,6 +108,6 @@ I wanted to reflect on this workflow because I'm considering how it can apply wh
 
 Some of my upcoming experiments will attempt to automate this workflow using LLMs.
 
-What about you? Have you tried adopting a similar workflow? How do you talk to code? What barriers have you faced in trying to improve your workflows? \
- \
+What about you? Have you tried adopting a similar workflow? How do you talk to code? What barriers have you faced in trying to improve your workflows?
+
 (I know, I haven't re-added comments on this site yet, but feel free to reach out via email or LinkedIn!)
