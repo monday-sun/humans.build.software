@@ -3,7 +3,7 @@
 ---
 
 <form
-  action="https://buttondown.com/api/emails/embed-subscribe/monday"
+  action="https://buttondown.com/api/emails/embed-subscribe/humans.build.software"
   method="post"
   target="popupwindow"
   onsubmit="window.open('https://blog.humans.build.software', 'popupwindow')"
@@ -39,8 +39,9 @@
     font-size: 0.9rem;
   }
   .embeddable-buttondown-form input[type='email']:focus {
-    outline: 2px solid var(--action-color); /* Use theme variable */
-    outline-offset: 2px;
+    /* Use box-shadow for focus indicator */
+    outline: none;
+    box-shadow: 0 0 0 2px var(--action-color);
   }
 
   .embeddable-buttondown-form input[type='submit'] {
@@ -66,5 +67,10 @@
   }
   .embeddable-buttondown-form p a:hover {
     text-decoration: underline;
+  }
+
+  /* Dark mode specific style */
+  :global(.darkmode) .embeddable-buttondown-form input[type='submit'] {
+    color: var(--neutral-900);
   }
 </style>
