@@ -1,0 +1,39 @@
+---
+// Component script can go here if needed in the future
+import { getCollection } from 'astro:content'
+import StyledLinkButton from './StyledLinkButton.astro'
+import NewsletterForm from './NewsletterForm.astro'
+
+// Get the primary author for coffee link
+const authors = await getCollection('authors')
+const primaryAuthor = authors.find((author) => author.id === 'monday-romelfanger')
+const coffeeLink = primaryAuthor?.data.social?.coffee || {
+  url: 'https://buymeacoffee.com/humans.build.software',
+  label: 'Support',
+  icon: 'ion:gift-outline',
+}
+---
+
+<div class="engagement-bar">
+  <!-- Engagement tools will go here -->
+  <NewsletterForm />
+  <StyledLinkButton
+    href={coffeeLink.url}
+    label={coffeeLink.label}
+    iconName={coffeeLink.icon}
+    title={coffeeLink.label}
+  />
+</div>
+
+<style>
+  .engagement-bar {
+    display: flex; /* Use flexbox for layout */
+    justify-content: flex-end; /* Align items to the right */
+    align-items: center; /* Center items vertically */
+    gap: 1rem; /* Add space between items */
+    box-sizing: border-box; /* Include padding/border in width */
+    background-color: var(--secondary-color); /* Optional: subtle background */
+    width: 100%; /* Ensure it takes full width */
+    min-height: 40px; /* Temporary height - Increased */
+  }
+</style>

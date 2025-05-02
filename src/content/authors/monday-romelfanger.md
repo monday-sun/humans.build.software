@@ -18,8 +18,8 @@ social:
     icon: ion:mail
   coffee:
     url: https://buymeacoffee.com/humans.build.software
-    label: Buy me a Coffee
-    icon: ion:cafe
+    label: Support
+    icon: ion:gift-outline
 ---
 
 I’m a software engineer who’s spent over a decade working in the guts of complex systems at companies like Apple, Amazon, Tableau, and Mode Analytics. I specialize in refactoring scary legacy code, untangling technical debt, and building process improvements that make room for humans to do their best work—even when the tools (or the brains) are a little glitchy.

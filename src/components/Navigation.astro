@@ -1,9 +1,10 @@
 ---
 import ResponsiveToggle from './ResponsiveToggle.astro'
-import { DarkMode } from 'accessible-astro-components'
 import { Image } from 'astro:assets'
 import logo from '../assets/img/logo.svg'
 import { siteConfig } from '../data/site.js'
+import EngagementBar from './EngagementBar.astro'
+import { DarkMode } from 'accessible-astro-components'
 ---
 
 <div id="main-navigation" class="is-desktop py-8">
@@ -19,9 +20,10 @@ import { siteConfig } from '../data/site.js'
           <slot />
         </ul>
       </nav>
-      <DarkMode />
       <ResponsiveToggle />
+      <DarkMode />
     </div>
+    <EngagementBar />
     <nav class="mobile-menu" aria-label="Main navigation mobile">
       <ul class="menu">
         <slot />
