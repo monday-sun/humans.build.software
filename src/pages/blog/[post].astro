@@ -12,7 +12,6 @@ export async function getStaticPaths() {
   // Create an author lookup map for easy reference
   const authorMap = Object.fromEntries(authors.map((author) => [author.id, author]))
 
-
   return blogEntries.map((entry) => {
     const author = authorMap[entry.data.author] || null
     return {
@@ -68,70 +67,80 @@ const formattedUpdatedDate = updatedDate
     </div>
   </div>
 
-  {/* Add Cover Image Section */}
-  {
-    entry.data.image && (
-      <section class="my-6">
-        <Image
-          src={entry.data.image.src}
-          alt={entry.data.image.alt}
-          width={1024} // Example width, adjust as needed
-          height={576} // Example height, adjust aspect ratio
-          format="webp" // Example format, adjust as needed
-          class="w-full h-64 object-cover"
-        />
-      </section>
-    )
-  }
-
   <section class="my-12">
     <div class="container">
       <h1>{title}</h1>
-      <div class="mt-2 flex flex-wrap gap-2">
+
+      {/* Grid Container for Image + Content */}
+      <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3">
+        {/* Image Column (if image exists) */}
         {
-          tags &&
-            tags.map((tag) => (
-              <span class="rounded-md bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">{tag}</span>
-            ))
-        }
-      </div>
-      <div class="mt-4 text-neutral-700 dark:text-neutral-300">
-        {
-          author ? (
-            <div class="author-info flex items-center gap-3">
-              {author.data.avatar && (
-                <Image
-                  src={author.data.avatar}
-                  alt={`${author.data.name}'s avatar`}
-                  width={40}
-                  height={40}
-                  class="rounded-full"
-                />
-              )}
-              <div>
-                <p>
-                  By{' '}
-                  <a href={`/authors/${author.id}`} class="text-action hover:text-action-state">
-                    {author.data.name}
-                  </a>
-                  {author.data.pronouns && <span class="text-sm opacity-75">({author.data.pronouns})</span>}• Published{' '}
-                  {formattedPubDate}
-                </p>
-                {formattedUpdatedDate && <p>Last updated: {formattedUpdatedDate}</p>}
+          entry.data.image && (
+            <div class="md:col-span-1">
+              <Image
+                src={entry.data.image.src}
+                alt={entry.data.image.alt}
+                width={600}
+                height={400}
+                format="webp"
+                class="h-auto w-full rounded-lg shadow-md"
+              />
+
+              {/* MOVED Metadata Block Here - Adjusted margin */}
+              <div class="mt-6">
+                <div class="mt-2 flex flex-wrap gap-2">
+                  {tags &&
+                    tags.map((tag) => (
+                      <span class="rounded-md bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">{tag}</span>
+                    ))}
+                </div>
+                <div class="mt-4 text-neutral-700 dark:text-neutral-300">
+                  {author ? (
+                    <div class="author-info flex items-center gap-3">
+                      {author.data.avatar && (
+                        <Image
+                          src={author.data.avatar}
+                          alt={`${author.data.name}'s avatar`}
+                          width={40}
+                          height={40}
+                          class="rounded-full"
+                        />
+                      )}
+                      <div>
+                        <p>
+                          By{' '}
+                          <a href={`/authors/${author.id}`} class="text-action hover:text-action-state">
+                            {author.data.name}
+                          </a>
+                          {author.data.pronouns && <span class="text-sm opacity-75">({author.data.pronouns})</span>}
+                          Published {formattedPubDate}
+                        </p>
+                        {formattedUpdatedDate && <p>Last updated: {formattedUpdatedDate}</p>}
+                      </div>
+                    </div>
+                  ) : (
+                    <p>By Anonymous • Published {formattedPubDate}</p>
+                  )}
+                </div>
               </div>
+              {/* End Moved Metadata */}
             </div>
-          ) : (
-            <p>By Anonymous • Published {formattedPubDate}</p>
           )
         }
-      </div>
-    </div>
-  </section>
 
-  <section class="my-12">
-    <div class="prose prose-lg dark:prose-invert container max-w-3xl">
-      <Content />
+        {/* Content Column - Adjust column span if no image */}
+        <div
+          class:list={[
+            'prose prose-lg max-w-none dark:prose-invert',
+            entry.data.image ? 'md:col-span-2' : 'md:col-span-3',
+          ]}
+        >
+          <Content />
+        </div>
+      </div>
+      {/* End of Grid */}
     </div>
+    {/* End of Container */}
   </section>
 </DefaultLayout>
 
