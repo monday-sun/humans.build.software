@@ -1,8 +1,8 @@
 ---
 // Component script can go here if needed in the future
-import { DarkMode } from 'accessible-astro-components'
 import { getCollection } from 'astro:content'
 import StyledLinkButton from './StyledLinkButton.astro'
+import NewsletterForm from './NewsletterForm.astro'
 
 // Get the primary author for coffee link
 const authors = await getCollection('authors')
@@ -16,13 +16,13 @@ const coffeeLink = primaryAuthor?.data.social?.coffee || {
 
 <div class="engagement-bar">
   <!-- Engagement tools will go here -->
+  <NewsletterForm />
   <StyledLinkButton
     href={coffeeLink.url}
     label={coffeeLink.label}
     iconName={coffeeLink.icon}
     title={coffeeLink.label}
   />
-  <DarkMode />
 </div>
 
 <style>
@@ -33,7 +33,6 @@ const coffeeLink = primaryAuthor?.data.social?.coffee || {
     gap: 1rem; /* Add space between items */
     box-sizing: border-box; /* Include padding/border in width */
     background-color: var(--secondary-color); /* Optional: subtle background */
-    padding: 0.5rem 1rem; /* Add some padding */
     width: 100%; /* Ensure it takes full width */
     min-height: 40px; /* Temporary height - Increased */
   }
